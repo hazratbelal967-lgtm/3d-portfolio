@@ -283,3 +283,34 @@ footer {
     background: #00ffff;
     color: #000;
 }
+/* PROJECT UPGRADE */
+
+.project-card {
+    transition: 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: #00ffff;
+    box-shadow: 0 10px 35px rgba(0, 255, 255, 0.15);
+}
+
+.project-icon {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.project-tags span {
+    padding: 7px 12px;
+    border: 1px solid #333;
+    border-radius: 20px;
+    color: #00ffff;
+    font-size: 12px;
+}
