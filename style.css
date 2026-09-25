@@ -324,3 +324,43 @@ footer {
     margin-bottom: 20px;
     display: block;
 }
+/* ABOUT SECTION */
+
+.about-content {
+    max-width: 1000px;
+}
+
+.about-text {
+    max-width: 850px;
+}
+
+.about-text p {
+    margin-bottom: 18px;
+}
+
+.about-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.about-stats div {
+    min-width: 180px;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 15px;
+    background: #101010;
+}
+
+.about-stats strong {
+    display: block;
+    color: #00ffff;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.about-stats span {
+    color: #aaa;
+    font-size: 14px;
+}
