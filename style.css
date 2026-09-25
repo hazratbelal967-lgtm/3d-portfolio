@@ -419,3 +419,19 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+/* PROJECT DETAILS */
+
+.project-details {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #292929;
+}
+
+.project-details p {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.project-details strong {
+    color: #00ffff;
+}
