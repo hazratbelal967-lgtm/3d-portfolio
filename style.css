@@ -264,3 +264,22 @@ footer {
     object-fit: cover;
     display: block;
 }
+/* HERO BUTTONS */
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.button-outline {
+    background: transparent;
+    color: #00ffff;
+    border: 1px solid #00ffff;
+}
+
+.button-outline:hover {
+    background: #00ffff;
+    color: #000;
+}
