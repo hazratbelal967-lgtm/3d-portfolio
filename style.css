@@ -435,3 +435,66 @@ footer {
 .project-details strong {
     color: #00ffff;
 }
+/* CONTACT SECTION */
+
+.contact-intro {
+    max-width: 700px;
+    color: #999;
+    line-height: 1.7;
+    margin: 20px 0 35px;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 850px;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px;
+    background: #101010;
+    border: 1px solid #292929;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-6px);
+    border-color: #00ffff;
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.12);
+}
+
+.contact-icon {
+    font-size: 30px;
+    min-width: 45px;
+}
+
+.contact-card h3 {
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.contact-card p {
+    color: #999;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* MOBILE CONTACT */
+
+@media (max-width: 600px) {
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+        padding: 18px;
+    }
+
+}
