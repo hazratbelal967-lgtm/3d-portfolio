@@ -7,25 +7,33 @@
     <title>Hazrat Belal | Mechanical Engineering Portfolio</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
 <body>
 
 <!-- ================= NAVBAR ================= -->
 
-<nav>
-    <div class="logo">HB</div>
+<header class="navbar">
+    <div class="nav-container">
 
-    <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#career">Career Goal</a>
-        <a href="#contact">Contact</a>
+        <div class="logo">
+            <span>HB</span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#future">Future Goal</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
     </div>
-</nav>
+</header>
 
 
 <!-- ================= HERO ================= -->
@@ -34,125 +42,129 @@
 
     <div class="hero-content">
 
-        <p class="hero-small">
-            B.TECH MECHANICAL ENGINEERING STUDENT
-        </p>
+        <div class="hero-text">
 
-        <h1>
-            HI, I'M
-            <span>HAZRAT BELAL</span>
-        </h1>
+            <p class="small-heading">
+                HI, I'M
+            </p>
 
-        <h2>
-            Mechanical Engineering Student
-        </h2>
+            <h1>
+                HAZRAT <span>BELAL</span>
+            </h1>
 
-        <p class="hero-skills">
-            Design <span>•</span>
-            3D CAD <span>•</span>
-            Arduino <span>•</span>
-            C Programming
-        </p>
+            <h2>
+                Mechanical Engineering Student
+            </h2>
 
-        <p class="dream">
-            Dream. Design. Build.
-        </p>
+            <p class="hero-description">
+                Design • 3D CAD • Arduino • C Programming
+            </p>
 
-        <p class="hero-description">
-            Building strong foundations in Mechanical Engineering,
-            design, automation and practical engineering projects
-            with a long-term vision for the Oil & Gas industry.
-        </p>
+            <p class="hero-tagline">
+                Dream. Design. Build.
+            </p>
 
-        <div class="hero-buttons">
+            <div class="hero-buttons">
 
-            <a href="#projects" class="button primary">
-                View My Projects
-            </a>
+                <a href="#projects" class="btn primary-btn">
+                    View My Projects
+                </a>
 
-            <a href="Hazrat-Belal-Resume.pdf"
-               class="button"
-               download>
-                Download Resume
-            </a>
+                <a href="Hazrat-Belal-Resume.pdf"
+                   class="btn secondary-btn"
+                   target="_blank">
+                    Download Resume
+                </a>
 
-            <a href="#contact" class="button outline">
-                Contact Me
-            </a>
+                <a href="#contact" class="btn outline-btn">
+                    Contact Me
+                </a>
+
+            </div>
 
         </div>
 
+
+        <!-- PERSONAL PHOTO -->
+
+        <div class="hero-photo-area">
+
+            <div class="photo-glow"></div>
+
+            <div class="profile-photo">
+                <img src="hazrat-profile.png"
+                     alt="Hazrat Belal">
+            </div>
+
+        </div>
+
+
+        <!-- 3D GEAR -->
+
+        <div id="three-container"></div>
+
     </div>
-
-
-    <div id="three-container"></div>
 
 </section>
 
 
 <!-- ================= CAREER VISION ================= -->
 
-<section id="career" class="career-section">
+<section class="career-section">
 
-    <div class="section-wrapper">
-
-        <p class="section-label">
-            MY CAREER VISION
-        </p>
+    <div class="section-heading">
+        <p>MY CAREER VISION</p>
 
         <h2>
-            Aspiring Oil & Gas
-            <span>Project Manager</span>
+            Aspiring <span>Oil & Gas Project Manager</span>
         </h2>
 
-        <p class="career-description">
-            My long-term goal is to build a career in the Oil & Gas
-            industry and develop the technical, engineering and
-            project-management skills required to lead major
-            engineering projects.
-        </p>
+        <div class="heading-line"></div>
+    </div>
 
 
-        <div class="career-path">
+    <div class="career-path">
 
-            <div class="career-box">
-                <span>01</span>
-                <h3>Mechanical Engineer</h3>
-                <p>
-                    Build strong fundamentals in mechanical engineering.
-                </p>
-            </div>
+        <div class="career-card">
+            <div class="career-number">01</div>
+            <h3>Mechanical Engineer</h3>
+            <p>
+                Building strong fundamentals in mechanical engineering,
+                design and engineering systems.
+            </p>
+        </div>
 
-            <div class="arrow">→</div>
+        <div class="career-arrow">→</div>
 
-            <div class="career-box">
-                <span>02</span>
-                <h3>Oil & Gas Industry</h3>
-                <p>
-                    Develop industry knowledge and practical experience.
-                </p>
-            </div>
+        <div class="career-card">
+            <div class="career-number">02</div>
+            <h3>Oil & Gas Industry</h3>
+            <p>
+                Developing technical knowledge related to industrial
+                mechanical systems and engineering projects.
+            </p>
+        </div>
 
-            <div class="arrow">→</div>
+        <div class="career-arrow">→</div>
 
-            <div class="career-box">
-                <span>03</span>
-                <h3>Project Engineering</h3>
-                <p>
-                    Learn engineering coordination and project execution.
-                </p>
-            </div>
+        <div class="career-card">
+            <div class="career-number">03</div>
+            <h3>Project Engineering</h3>
+            <p>
+                Learning planning, design, coordination and execution
+                of engineering projects.
+            </p>
+        </div>
 
-            <div class="arrow">→</div>
+        <div class="career-arrow">→</div>
 
-            <div class="career-box">
-                <span>04</span>
-                <h3>Project Management</h3>
-                <p>
-                    Long-term goal: Oil & Gas Project Management.
-                </p>
-            </div>
-
+        <div class="career-card">
+            <div class="career-number">04</div>
+            <h3>Project Management</h3>
+            <p>
+                Long-term goal: progressing toward project management
+                responsibilities in the Oil & Gas industry.
+            </p>
         </div>
 
     </div>
@@ -162,65 +174,74 @@
 
 <!-- ================= ABOUT ================= -->
 
-<section id="about">
+<section id="about" class="section">
 
-    <div class="section-wrapper">
+    <div class="section-heading">
 
-        <p class="section-label">
-            ABOUT ME
-        </p>
+        <p>ABOUT ME</p>
 
         <h2>
-            Mechanical Engineering
-            <span>Student</span>
+            Engineering <span>My Future</span>
         </h2>
 
-        <div class="about-grid">
+        <div class="heading-line"></div>
 
-            <div class="about-text">
+    </div>
 
-                <p>
-                    I am Hazrat Belal, a B.Tech Mechanical Engineering
-                    student at Galgotias University.
-                </p>
 
-                <p>
-                    I am interested in Mechanical Design, CAD,
-                    automation and practical engineering projects.
-                </p>
+    <div class="about-grid">
 
-                <p>
-                    Currently, I am building my technical foundation
-                    through engineering subjects, programming,
-                    Arduino and hands-on projects.
-                </p>
+        <div class="about-text">
 
-                <p>
-                    My long-term career vision is to enter the
-                    Oil & Gas industry and grow towards
-                    Project Management.
-                </p>
+            <h3>
+                Mechanical Engineering Student
+            </h3>
 
+            <p>
+                I am Hazrat Belal, a Mechanical Engineering student
+                passionate about engineering, design, technology and
+                practical problem solving.
+            </p>
+
+            <p>
+                Currently, I am developing my fundamentals in mechanical
+                engineering while learning CAD, Arduino, C programming
+                and engineering software.
+            </p>
+
+            <p>
+                My long-term career vision is to build a career in the
+                Oil & Gas industry and gradually move toward
+                project engineering and project management.
+            </p>
+
+        </div>
+
+
+        <div class="about-cards">
+
+            <div class="info-card">
+                <div class="info-icon">⚙</div>
+                <h3>Mechanical</h3>
+                <p>Engineering Fundamentals</p>
             </div>
 
+            <div class="info-card">
+                <div class="info-icon">◈</div>
+                <h3>Design</h3>
+                <p>CAD & 3D Modelling</p>
+            </div>
 
-            <div class="about-cards">
+            <div class="info-card">
+                <div class="info-icon">⌘</div>
+                <h3>Technology</h3>
+                <p>Arduino & Programming</p>
+            </div>
 
-                <div class="info-card">
-                    <strong>B.Tech</strong>
-                    <span>Mechanical Engineering</span>
-                </div>
-
-                <div class="info-card">
-                    <strong>CAD</strong>
-                    <span>Design & 3D Modelling</span>
-                </div>
-
-                <div class="info-card">
-                    <strong>Oil & Gas</strong>
-                    <span>Long-Term Career Goal</span>
-                </div>
-
+            <div class="info-card">
+                <div class="info-icon">◆</div>
+                <h3>Future</h3>
+                <p>Oil & Gas Industry</p>
             </div>
 
         </div>
@@ -232,108 +253,87 @@
 
 <!-- ================= EDUCATION ================= -->
 
-<section id="education" class="education-section">
+<section id="education" class="section education-section">
 
-    <div class="section-wrapper">
+    <div class="section-heading">
 
-        <p class="section-label">
-            EDUCATION
-        </p>
+        <p>EDUCATION</p>
 
         <h2>
             My <span>University</span>
         </h2>
 
+        <div class="heading-line"></div>
 
-        <div class="university-card">
+    </div>
 
 
-            <!-- THREE UNIVERSITY PHOTOS -->
+    <div class="university-card">
 
-            <div class="university-gallery">
+        <div class="university-gallery">
 
-                <div class="university-photo photo-large">
-                    <img
-                        src="galgotias-university-1.png"
-                        alt="Galgotias University Main Campus"
-                    >
+            <div class="university-photo photo-large">
+                <img src="galgotias-university-1.png"
+                     alt="Galgotias University Main Campus">
+            </div>
+
+            <div class="university-photo">
+                <img src="galgotias-university-2.png"
+                     alt="Galgotias University Campus">
+            </div>
+
+            <div class="university-photo">
+                <img src="galgotias-university-3.png"
+                     alt="Galgotias University Building">
+            </div>
+
+        </div>
+
+
+        <div class="university-info">
+
+            <div class="university-badge">
+                B.TECH
+            </div>
+
+            <h3>
+                Galgotias University
+            </h3>
+
+            <h4>
+                Mechanical Engineering
+            </h4>
+
+            <p class="location">
+                Greater Noida, Uttar Pradesh
+            </p>
+
+
+            <div class="education-details">
+
+                <div>
+                    <span>PROGRAM</span>
+                    <strong>B.Tech Mechanical Engineering</strong>
                 </div>
 
-                <div class="university-photo">
-                    <img
-                        src="galgotias-university-2.png"
-                        alt="Galgotias University Campus"
-                    >
+                <div>
+                    <span>DURATION</span>
+                    <strong>4 Years / 8 Semesters</strong>
                 </div>
 
-                <div class="university-photo">
-                    <img
-                        src="galgotias-university-3.png"
-                        alt="Galgotias University Building"
-                    >
+                <div>
+                    <span>BATCH</span>
+                    <strong>2026 – 2030</strong>
                 </div>
 
             </div>
 
 
-            <!-- UNIVERSITY INFORMATION -->
-
-            <div class="university-info">
-
-                <p class="university-tag">
-                    CURRENTLY STUDYING
-                </p>
-
-                <h3>
-                    Galgotias University
-                </h3>
-
-                <h4>
-                    B.Tech — Mechanical Engineering
-                </h4>
-
-                <div class="university-details">
-
-                    <div>
-                        <span>📍</span>
-                        <p>
-                            Greater Noida, Uttar Pradesh
-                        </p>
-                    </div>
-
-                    <div>
-                        <span>🎓</span>
-                        <p>
-                            B.Tech Mechanical Engineering
-                        </p>
-                    </div>
-
-                    <div>
-                        <span>📅</span>
-                        <p>
-                            2026 – 2030
-                        </p>
-                    </div>
-
-                    <div>
-                        <span>⏳</span>
-                        <p>
-                            4 Years / 8 Semesters
-                        </p>
-                    </div>
-
-                </div>
-
-                <a
-                    href="https://www.galgotiasuniversity.edu.in/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="university-button"
-                >
-                    Visit University Website →
-                </a>
-
-            </div>
+            <p class="education-description">
+                Building a strong foundation in Mechanical Engineering
+                with a focus on engineering design, practical projects,
+                technology and future industrial applications.
+            </p>
 
         </div>
 
@@ -344,75 +344,80 @@
 
 <!-- ================= SKILLS ================= -->
 
-<section id="skills">
+<section id="skills" class="section skills-section">
 
-    <div class="section-wrapper">
+    <div class="section-heading">
 
-        <p class="section-label">
-            MY SKILLS
-        </p>
+        <p>WHAT I AM LEARNING</p>
 
         <h2>
-            Technical <span>Skills</span>
+            My <span>Skills</span>
         </h2>
 
+        <div class="heading-line"></div>
 
-        <div class="skills-grid">
+    </div>
 
-            <div class="skill-card">
-                <span>01</span>
-                <h3>Mechanical Engineering</h3>
-                <p>
-                    Core mechanical engineering fundamentals
-                    and engineering problem solving.
-                </p>
-            </div>
 
-            <div class="skill-card">
-                <span>02</span>
-                <h3>CAD & 3D Modelling</h3>
-                <p>
-                    Mechanical drawings, CAD modelling
-                    and design concepts.
-                </p>
-            </div>
+    <div class="skills-grid">
 
-            <div class="skill-card">
-                <span>03</span>
-                <h3>AutoCAD</h3>
-                <p>
-                    Engineering drawings and
-                    mechanical design practice.
-                </p>
-            </div>
+        <div class="skill-card">
+            <div class="skill-number">01</div>
+            <h3>Mechanical Engineering</h3>
+            <p>
+                Engineering fundamentals, thermodynamics,
+                electrical basics and mechanical systems.
+            </p>
+        </div>
 
-            <div class="skill-card">
-                <span>04</span>
-                <h3>Arduino</h3>
-                <p>
-                    Sensors, automation, electronics
-                    and embedded projects.
-                </p>
-            </div>
 
-            <div class="skill-card">
-                <span>05</span>
-                <h3>C Programming</h3>
-                <p>
-                    Programming fundamentals,
-                    logic and problem solving.
-                </p>
-            </div>
+        <div class="skill-card">
+            <div class="skill-number">02</div>
+            <h3>CAD & 3D Modelling</h3>
+            <p>
+                Learning computer-aided design and 3D mechanical
+                modelling.
+            </p>
+        </div>
 
-            <div class="skill-card">
-                <span>06</span>
-                <h3>Scilab</h3>
-                <p>
-                    Engineering calculations,
-                    mathematics and basic simulation.
-                </p>
-            </div>
 
+        <div class="skill-card">
+            <div class="skill-number">03</div>
+            <h3>AutoCAD</h3>
+            <p>
+                Developing technical drawing and engineering
+                design skills.
+            </p>
+        </div>
+
+
+        <div class="skill-card">
+            <div class="skill-number">04</div>
+            <h3>Arduino</h3>
+            <p>
+                Exploring sensors, electronics and engineering
+                automation projects.
+            </p>
+        </div>
+
+
+        <div class="skill-card">
+            <div class="skill-number">05</div>
+            <h3>C Programming</h3>
+            <p>
+                Learning programming fundamentals and
+                problem solving.
+            </p>
+        </div>
+
+
+        <div class="skill-card">
+            <div class="skill-number">06</div>
+            <h3>Scilab</h3>
+            <p>
+                Learning computational tools for engineering
+                calculations and analysis.
+            </p>
         </div>
 
     </div>
@@ -422,114 +427,122 @@
 
 <!-- ================= PROJECTS ================= -->
 
-<section id="projects">
+<section id="projects" class="section projects-section">
 
-    <div class="section-wrapper">
+    <div class="section-heading">
 
-        <p class="section-label">
-            MY PROJECTS
-        </p>
+        <p>MY WORK</p>
 
         <h2>
             Engineering <span>Projects</span>
         </h2>
 
+        <div class="heading-line"></div>
 
-        <div class="projects-grid">
+    </div>
 
 
-            <div class="project-card">
+    <div class="projects-grid">
 
-                <img
-                    src="cooling-system.png"
-                    alt="Cooling System Project"
-                >
 
-                <div class="project-content">
+        <!-- PROJECT 1 -->
 
-                    <div class="project-icon">
-                        ⚙
-                    </div>
+        <div class="project-card">
 
-                    <h3>
-                        Cooling System
-                    </h3>
+            <div class="project-image">
+                <img src="cooling-system.png"
+                     alt="Cooling System Project">
+            </div>
 
-                    <p>
-                        A mechanical engineering project focused
-                        on heat transfer and cooling system concepts.
-                    </p>
+            <div class="project-content">
 
-                    <div class="tags">
-                        <span>Mechanical</span>
-                        <span>Thermal</span>
-                        <span>Design</span>
-                    </div>
+                <span class="project-tag">
+                    MECHANICAL
+                </span>
 
+                <h3>
+                    Cooling System
+                </h3>
+
+                <p>
+                    A mechanical engineering project focused on
+                    understanding cooling systems, heat transfer
+                    and practical engineering applications.
+                </p>
+
+                <div class="project-tech">
+                    <span>Mechanical</span>
+                    <span>Thermodynamics</span>
+                    <span>Heat Transfer</span>
                 </div>
 
             </div>
 
+        </div>
 
-            <div class="project-card">
 
-                <div class="project-placeholder">
-                    🤖
-                </div>
+        <!-- PROJECT 2 -->
 
-                <div class="project-content">
+        <div class="project-card">
 
-                    <div class="project-icon">
-                        ⚡
-                    </div>
+            <div class="project-placeholder">
+                <div>ARDUINO</div>
+            </div>
 
-                    <h3>
-                        Arduino Engineering Project
-                    </h3>
+            <div class="project-content">
 
-                    <p>
-                        Beginner automation project using Arduino,
-                        sensors, LEDs and electronic components.
-                    </p>
+                <span class="project-tag">
+                    EMBEDDED
+                </span>
 
-                    <div class="tags">
-                        <span>Arduino</span>
-                        <span>Automation</span>
-                        <span>Sensors</span>
-                    </div>
+                <h3>
+                    Arduino Engineering Project
+                </h3>
 
+                <p>
+                    An engineering project using Arduino,
+                    sensors and electronic components to
+                    explore automation and practical systems.
+                </p>
+
+                <div class="project-tech">
+                    <span>Arduino</span>
+                    <span>Sensors</span>
+                    <span>Electronics</span>
                 </div>
 
             </div>
 
+        </div>
 
-            <div class="project-card">
 
-                <div class="project-placeholder">
-                    📐
-                </div>
+        <!-- PROJECT 3 -->
 
-                <div class="project-content">
+        <div class="project-card">
 
-                    <div class="project-icon">
-                        ⚙
-                    </div>
+            <div class="project-placeholder">
+                <div>CAD / 3D</div>
+            </div>
 
-                    <h3>
-                        CAD & Mechanical Design
-                    </h3>
+            <div class="project-content">
 
-                    <p>
-                        Mechanical design and 3D modelling work
-                        focused on developing CAD skills.
-                    </p>
+                <span class="project-tag">
+                    DESIGN
+                </span>
 
-                    <div class="tags">
-                        <span>CAD</span>
-                        <span>3D Modelling</span>
-                        <span>Design</span>
-                    </div>
+                <h3>
+                    CAD & Mechanical Design
+                </h3>
 
+                <p>
+                    Developing mechanical design concepts using
+                    CAD and 3D modelling tools.
+                </p>
+
+                <div class="project-tech">
+                    <span>CAD</span>
+                    <span>3D Modelling</span>
+                    <span>Design</span>
                 </div>
 
             </div>
@@ -543,34 +556,25 @@
 
 <!-- ================= FUTURE GOAL ================= -->
 
-<section class="future-section">
+<section id="future" class="future-section">
 
     <div class="future-content">
 
-        <p class="section-label">
-            FUTURE GOAL
+        <p class="future-label">
+            LONG-TERM CAREER VISION
         </p>
 
         <h2>
-            Building Towards
-            <span>Oil & Gas</span>
+            Aspiring
+            <span>Oil & Gas Project Manager</span>
         </h2>
 
         <p>
-            Mechanical Engineering
-            <strong>→</strong>
-            Oil & Gas Industry
-            <strong>→</strong>
-            Project Engineering
-            <strong>→</strong>
-            Project Management
+            Mechanical Engineering → Oil & Gas Industry →
+            Project Engineering → Project Management
         </p>
 
         <div class="future-line"></div>
-
-        <h3>
-            ASPIRING OIL & GAS PROJECT MANAGER
-        </h3>
 
     </div>
 
@@ -579,87 +583,91 @@
 
 <!-- ================= CONTACT ================= -->
 
-<section id="contact">
+<section id="contact" class="section contact-section">
 
-    <div class="section-wrapper contact-section">
+    <div class="section-heading">
 
-        <p class="section-label">
-            CONTACT
-        </p>
+        <p>GET IN TOUCH</p>
 
         <h2>
             Let's <span>Connect</span>
         </h2>
 
-        <p class="contact-intro">
-            Interested in mechanical engineering, CAD,
-            automation and engineering projects?
-            Let's connect.
-        </p>
+        <div class="heading-line"></div>
+
+    </div>
 
 
-        <div class="contact-grid">
+    <div class="contact-grid">
 
-            <a
-                href="mailto:hazratbelal967@gmail.com"
-                class="contact-card"
-            >
-                <span>📧</span>
+        <a href="mailto:hazratbelal967@gmail.com"
+           class="contact-card">
 
-                <div>
-                    <h3>Email</h3>
-                    <p>hazratbelal967@gmail.com</p>
-                </div>
+            <div class="contact-icon">
+                @
+            </div>
 
-            </a>
+            <div>
+                <span>Email</span>
+                <strong>
+                    hazratbelal967@gmail.com
+                </strong>
+            </div>
 
-
-            <a
-                href="tel:+916200907602"
-                class="contact-card"
-            >
-                <span>📱</span>
-
-                <div>
-                    <h3>Phone</h3>
-                    <p>+91 62009 07602</p>
-                </div>
-
-            </a>
+        </a>
 
 
-            <a
-                href="https://www.linkedin.com/in/bellaaahaz/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="contact-card"
-            >
-                <span>💼</span>
+        <a href="tel:+916200907602"
+           class="contact-card">
 
-                <div>
-                    <h3>LinkedIn</h3>
-                    <p>Connect with me</p>
-                </div>
+            <div class="contact-icon">
+                ☎
+            </div>
 
-            </a>
+            <div>
+                <span>Phone</span>
+                <strong>
+                    +91 62009 07602
+                </strong>
+            </div>
+
+        </a>
 
 
-            <a
-                href="https://github.com/hazratbelal967-lgtm"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="contact-card"
-            >
-                <span>💻</span>
+        <a href="https://www.linkedin.com/in/bellaaahaz/"
+           target="_blank"
+           class="contact-card">
 
-                <div>
-                    <h3>GitHub</h3>
-                    <p>View my projects</p>
-                </div>
+            <div class="contact-icon">
+                in
+            </div>
 
-            </a>
+            <div>
+                <span>LinkedIn</span>
+                <strong>
+                    Connect with me
+                </strong>
+            </div>
 
-        </div>
+        </a>
+
+
+        <a href="https://github.com/hazratbelal967-lgtm"
+           target="_blank"
+           class="contact-card">
+
+            <div class="contact-icon">
+                ◉
+            </div>
+
+            <div>
+                <span>GitHub</span>
+                <strong>
+                    View my projects
+                </strong>
+            </div>
+
+        </a>
 
     </div>
 
@@ -675,19 +683,15 @@
     </div>
 
     <p>
-        © 2026 Hazrat Belal | Mechanical Engineering
+        Designed & Built by Hazrat Belal
     </p>
 
-    <p class="footer-goal">
-        Dream. Design. Build.
+    <p class="footer-small">
+        Mechanical Engineering Student • Future Oil & Gas Project Manager
     </p>
 
 </footer>
 
-
-<!-- ================= THREE.JS ================= -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script src="script.js"></script>
 
