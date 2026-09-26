@@ -24,8 +24,8 @@ a {
 /* ================= NAVBAR ================= */
 
 nav {
-    height: 75px;
     width: 100%;
+    min-height: 75px;
 
     display: flex;
     align-items: center;
@@ -33,9 +33,9 @@ nav {
 
     padding: 0 5%;
 
-    background: #260000;
+    background: #250000;
 
-    border-bottom: 1px solid rgba(0,255,255,0.2);
+    border-bottom: 1px solid rgba(0,255,255,0.18);
 
     position: sticky;
     top: 0;
@@ -51,13 +51,14 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 25px;
+    align-items: center;
+    gap: 24px;
 }
 
 .nav-links a {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -72,26 +73,26 @@ nav {
 
     display: grid;
 
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.15fr 0.85fr;
 
     align-items: center;
 
-    gap: 20px;
+    gap: 30px;
 
-    padding: 70px 7%;
-
-    background:
-        radial-gradient(
-            circle at 75% 40%,
-            #a60000 0%,
-            #720000 35%,
-            #3c0000 75%,
-            #180000 100%
-        );
+    padding: 65px 7%;
 
     position: relative;
 
     overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 75% 40%,
+            #a90000 0%,
+            #760000 35%,
+            #430000 70%,
+            #180000 100%
+        );
 }
 
 .hero::before {
@@ -99,15 +100,15 @@ nav {
 
     position: absolute;
 
-    width: 500px;
-    height: 500px;
+    width: 520px;
+    height: 520px;
 
-    border: 1px solid rgba(0,255,255,0.15);
+    right: -180px;
+    top: 70px;
+
+    border: 1px solid rgba(0,255,255,0.13);
 
     border-radius: 50%;
-
-    right: -150px;
-    top: 80px;
 }
 
 .hero-content {
@@ -162,15 +163,16 @@ nav {
 
 .hero-skills span {
     color: #00ffff;
+
     margin: 0 8px;
 }
 
 .dream {
+    color: #00ffff;
+
     font-size: 28px;
 
     font-weight: 900;
-
-    color: #00ffff;
 
     margin-bottom: 20px;
 }
@@ -178,7 +180,7 @@ nav {
 .hero-description {
     max-width: 620px;
 
-    color: #f5f5f5;
+    color: #eeeeee;
 
     font-size: 16px;
 
@@ -199,6 +201,11 @@ nav {
 }
 
 .button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
     padding: 15px 25px;
 
     border-radius: 30px;
@@ -207,12 +214,19 @@ nav {
 
     font-weight: 700;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .button.primary {
     background: #00ffff;
-    color: #150000;
+
+    color: #160000;
+}
+
+.button.outline {
+    color: #00ffff;
+
+    background: transparent;
 }
 
 .button:hover {
@@ -222,13 +236,8 @@ nav {
         0 0 25px rgba(0,255,255,0.35);
 }
 
-.button.outline {
-    background: transparent;
-    color: #00ffff;
-}
 
-
-/* THREE */
+/* THREE.JS */
 
 #three-container {
     width: 100%;
@@ -238,14 +247,18 @@ nav {
 }
 
 #three-container canvas {
+    display: block;
+
     width: 100% !important;
     height: 100% !important;
 }
 
 
-/* ================= SECTIONS ================= */
+/* ================= COMMON SECTIONS ================= */
 
 section:not(.hero) {
+    width: 100%;
+
     padding: 100px 7%;
 
     background:
@@ -259,6 +272,8 @@ section:not(.hero) {
 }
 
 .section-wrapper {
+    width: 100%;
+
     max-width: 1250px;
 
     margin: auto;
@@ -279,9 +294,11 @@ section:not(.hero) {
 h2 {
     font-size: clamp(38px, 5vw, 60px);
 
-    margin-bottom: 40px;
+    line-height: 1.1;
 
     font-weight: 900;
+
+    margin-bottom: 40px;
 }
 
 h2 span {
@@ -295,7 +312,7 @@ h2 span {
     background:
         radial-gradient(
             circle at center,
-            #700000,
+            #720000,
             #350000
         ) !important;
 }
@@ -303,9 +320,9 @@ h2 span {
 .career-description {
     max-width: 750px;
 
-    line-height: 1.8;
-
     color: #eeeeee;
+
+    line-height: 1.8;
 
     margin-bottom: 50px;
 }
@@ -329,13 +346,13 @@ h2 span {
 
     padding: 25px;
 
-    border-radius: 18px;
-
     background: rgba(20,0,0,0.65);
 
     border: 1px solid rgba(255,255,255,0.15);
 
-    transition: 0.3s;
+    border-radius: 18px;
+
+    transition: 0.3s ease;
 }
 
 .career-box:hover {
@@ -347,7 +364,7 @@ h2 span {
         0 10px 30px rgba(0,0,0,0.4);
 }
 
-.career-box span {
+.career-box > span {
     color: #00ffff;
 
     font-size: 13px;
@@ -360,7 +377,7 @@ h2 span {
 }
 
 .career-box p {
-    color: #ddd;
+    color: #dddddd;
 
     font-size: 13px;
 
@@ -368,9 +385,9 @@ h2 span {
 }
 
 .arrow {
-    font-size: 30px;
-
     color: #00ffff;
+
+    font-size: 30px;
 }
 
 
@@ -385,11 +402,11 @@ h2 span {
 }
 
 .about-text p {
+    color: #eeeeee;
+
     font-size: 17px;
 
     line-height: 1.9;
-
-    color: #eeeeee;
 
     margin-bottom: 20px;
 }
@@ -403,27 +420,27 @@ h2 span {
 .info-card {
     padding: 25px;
 
-    border-radius: 16px;
-
     background: rgba(20,0,0,0.5);
 
     border: 1px solid rgba(255,255,255,0.15);
 
-    transition: 0.3s;
+    border-radius: 16px;
+
+    transition: 0.3s ease;
 }
 
 .info-card:hover {
-    border-color: #00ffff;
-
     transform: translateX(8px);
+
+    border-color: #00ffff;
 }
 
 .info-card strong {
     display: block;
 
-    font-size: 24px;
-
     color: #00ffff;
+
+    font-size: 24px;
 
     margin-bottom: 7px;
 }
@@ -442,9 +459,11 @@ h2 span {
 .university-card {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.15fr 0.85fr;
 
-    min-height: 400px;
+    min-height: 470px;
+
+    overflow: hidden;
 
     background: #190000;
 
@@ -452,30 +471,60 @@ h2 span {
 
     border-radius: 25px;
 
-    overflow: hidden;
-
     box-shadow:
-        0 20px 50px rgba(0,0,0,0.3);
+        0 20px 50px rgba(0,0,0,0.35);
 }
 
-.university-image {
-    min-height: 400px;
 
+/* 3 IMAGE GALLERY */
+
+.university-gallery {
+    min-height: 470px;
+
+    padding: 14px;
+
+    display: grid;
+
+    grid-template-columns: 1.45fr 1fr;
+
+    grid-template-rows: 1fr 1fr;
+
+    gap: 12px;
+
+    background: #100000;
+}
+
+.university-photo {
     overflow: hidden;
+
+    border-radius: 15px;
+
+    border: 1px solid rgba(0,255,255,0.18);
+
+    background: #300000;
 }
 
-.university-image img {
+.university-photo.photo-large {
+    grid-row: 1 / 3;
+}
+
+.university-photo img {
     width: 100%;
     height: 100%;
 
+    display: block;
+
     object-fit: cover;
 
-    transition: 0.5s;
+    transition: 0.5s ease;
 }
 
-.university-card:hover .university-image img {
-    transform: scale(1.05);
+.university-photo:hover img {
+    transform: scale(1.06);
 }
+
+
+/* UNIVERSITY TEXT */
 
 .university-info {
     padding: 50px;
@@ -490,11 +539,11 @@ h2 span {
 .university-tag {
     color: #00ffff;
 
-    letter-spacing: 3px;
-
     font-size: 12px;
 
-    font-weight: bold;
+    letter-spacing: 3px;
+
+    font-weight: 700;
 
     margin-bottom: 15px;
 }
@@ -534,14 +583,12 @@ h2 span {
 }
 
 .university-details p {
-    font-size: 14px;
+    color: #dddddd;
 
-    color: #ddd;
+    font-size: 14px;
 }
 
 .university-button {
-    display: inline-block;
-
     width: fit-content;
 
     padding: 13px 20px;
@@ -552,9 +599,9 @@ h2 span {
 
     color: #00ffff;
 
-    font-weight: bold;
+    font-weight: 700;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .university-button:hover {
@@ -575,9 +622,9 @@ h2 span {
 }
 
 .skill-card {
-    padding: 30px;
-
     min-height: 200px;
+
+    padding: 30px;
 
     background: rgba(20,0,0,0.6);
 
@@ -585,7 +632,7 @@ h2 span {
 
     border-radius: 18px;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .skill-card:hover {
@@ -612,7 +659,7 @@ h2 span {
 }
 
 .skill-card p {
-    color: #ddd;
+    color: #dddddd;
 
     font-size: 14px;
 
@@ -631,15 +678,15 @@ h2 span {
 }
 
 .project-card {
-    background: #200000;
-
-    border-radius: 20px;
-
     overflow: hidden;
+
+    background: #200000;
 
     border: 1px solid rgba(255,255,255,0.12);
 
-    transition: 0.3s;
+    border-radius: 20px;
+
+    transition: 0.3s ease;
 }
 
 .project-card:hover {
@@ -650,12 +697,11 @@ h2 span {
 
 .project-card > img {
     width: 100%;
-
     height: 210px;
 
-    object-fit: cover;
-
     display: block;
+
+    object-fit: cover;
 }
 
 .project-placeholder {
@@ -664,7 +710,6 @@ h2 span {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-size: 80px;
@@ -696,7 +741,7 @@ h2 span {
 }
 
 .project-card p {
-    color: #ddd;
+    color: #dddddd;
 
     font-size: 14px;
 
@@ -716,9 +761,9 @@ h2 span {
 .tags span {
     padding: 7px 12px;
 
-    border-radius: 20px;
-
     border: 1px solid #00ffff;
+
+    border-radius: 20px;
 
     color: #00ffff;
 
@@ -726,7 +771,7 @@ h2 span {
 }
 
 
-/* ================= FUTURE ================= */
+/* ================= FUTURE GOAL ================= */
 
 .future-section {
     text-align: center;
@@ -750,11 +795,11 @@ h2 span {
 }
 
 .future-content > p:not(.section-label) {
+    color: #eeeeee;
+
     font-size: 20px;
 
     line-height: 2;
-
-    color: #eee;
 }
 
 .future-content strong {
@@ -764,13 +809,13 @@ h2 span {
 }
 
 .future-line {
-    height: 2px;
-
     width: 150px;
 
-    background: #00ffff;
+    height: 2px;
 
     margin: 35px auto;
+
+    background: #00ffff;
 }
 
 .future-content h3 {
@@ -793,7 +838,7 @@ h2 span {
 
     margin: -20px auto 40px;
 
-    color: #ddd;
+    color: #dddddd;
 
     line-height: 1.7;
 }
@@ -817,9 +862,9 @@ h2 span {
 
     gap: 18px;
 
-    text-align: left;
-
     padding: 25px;
+
+    text-align: left;
 
     background: rgba(20,0,0,0.6);
 
@@ -827,7 +872,7 @@ h2 span {
 
     border-radius: 16px;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .contact-card:hover {
@@ -845,7 +890,7 @@ h2 span {
 }
 
 .contact-card p {
-    color: #bbb;
+    color: #bbbbbb;
 
     font-size: 13px;
 
@@ -876,7 +921,7 @@ footer {
 }
 
 footer p {
-    color: #ccc;
+    color: #cccccc;
 
     font-size: 13px;
 
@@ -890,18 +935,19 @@ footer p {
 
 /* ================= TABLET ================= */
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
 
     .nav-links {
         gap: 12px;
     }
 
     .nav-links a {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .hero {
         grid-template-columns: 1fr;
+
         text-align: center;
     }
 
@@ -931,17 +977,18 @@ footer p {
         grid-template-columns: 1fr;
     }
 
-    .university-image {
-        height: 300px;
+    .university-gallery {
+        min-height: 400px;
     }
 
-    .career-path {
-        gap: 10px;
+    .university-info {
+        padding: 40px;
     }
 
     .arrow {
         display: none;
     }
+
 }
 
 
@@ -950,7 +997,7 @@ footer p {
 @media (max-width: 700px) {
 
     nav {
-        height: auto;
+        min-height: auto;
 
         flex-direction: column;
 
@@ -963,6 +1010,12 @@ footer p {
         justify-content: center;
 
         flex-wrap: wrap;
+
+        gap: 12px 18px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
     }
 
     .hero {
@@ -987,8 +1040,6 @@ footer p {
         width: 100%;
 
         max-width: 300px;
-
-        text-align: center;
     }
 
     #three-container {
@@ -1005,6 +1056,18 @@ footer p {
         grid-template-columns: 1fr;
     }
 
+    .university-gallery {
+        min-height: 330px;
+
+        grid-template-columns: 1fr 1fr;
+
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .university-photo.photo-large {
+        grid-row: 1 / 3;
+    }
+
     .university-info {
         padding: 30px;
     }
@@ -1019,6 +1082,39 @@ footer p {
 
     h2 {
         font-size: 38px;
+    }
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero-small {
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+
+    .university-gallery {
+        display: flex;
+
+        flex-direction: column;
+
+        min-height: auto;
+    }
+
+    .university-photo {
+        height: 180px;
+    }
+
+    .university-photo.photo-large {
+        height: 220px;
     }
 
 }
