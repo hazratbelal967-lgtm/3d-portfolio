@@ -1,67 +1,124 @@
-const container = document.getElementById("three-container");
+const container =
+    document.getElementById("three-container");
 
-const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(
-    45,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
+/* =========================
+   SCENE
+========================= */
+
+const scene =
+    new THREE.Scene();
+
+
+/* =========================
+   CAMERA
+========================= */
+
+const camera =
+    new THREE.PerspectiveCamera(
+        45,
+        container.clientWidth /
+        container.clientHeight,
+        0.1,
+        1000
+    );
+
+camera.position.set(
+    0,
+    0,
+    7
 );
 
-camera.position.set(0, 0, 7);
 
+/* =========================
+   RENDERER
+========================= */
 
-const renderer = new THREE.WebGLRenderer({
-    antialias: true,
-    alpha: true
-});
+const renderer =
+    new THREE.WebGLRenderer({
+
+        antialias: true,
+
+        alpha: true
+
+    });
+
 
 renderer.setSize(
     container.clientWidth,
     container.clientHeight
 );
 
+
 renderer.setPixelRatio(
-    Math.min(window.devicePixelRatio, 2)
+    Math.min(
+        window.devicePixelRatio,
+        2
+    )
 );
 
-container.appendChild(renderer.domElement);
 
-
-/* LIGHTS */
-
-const ambientLight = new THREE.AmbientLight(
-    0xffffff,
-    1.8
+container.appendChild(
+    renderer.domElement
 );
 
-scene.add(ambientLight);
 
+/* =========================
+   LIGHTS
+========================= */
 
-const mainLight = new THREE.DirectionalLight(
-    0xffffff,
-    3
+const ambientLight =
+    new THREE.AmbientLight(
+        0xffffff,
+        1.8
+    );
+
+scene.add(
+    ambientLight
 );
 
-mainLight.position.set(5,5,8);
 
-scene.add(mainLight);
+const mainLight =
+    new THREE.DirectionalLight(
+        0xffffff,
+        3
+    );
 
-
-const cyanLight = new THREE.DirectionalLight(
-    0x00ffff,
-    2
+mainLight.position.set(
+    5,
+    5,
+    8
 );
 
-cyanLight.position.set(-5,2,5);
+scene.add(
+    mainLight
+);
 
-scene.add(cyanLight);
+
+const redLight =
+    new THREE.DirectionalLight(
+        0xff2020,
+        2
+    );
+
+redLight.position.set(
+    -5,
+    2,
+    5
+);
+
+scene.add(
+    redLight
+);
 
 
-/* GEAR */
+/* =========================
+   GEAR SHAPE
+========================= */
 
-const gearShape = new THREE.Shape();
+const gearShape =
+    new THREE.Shape();
+
 
 const teeth = 16;
 
@@ -70,13 +127,19 @@ const outerRadius = 2.0;
 const innerRadius = 1.55;
 
 const step =
-    (Math.PI * 2) / teeth;
+    (Math.PI * 2) /
+    teeth;
 
 
-for (let i = 0; i < teeth; i++) {
+for (
+    let i = 0;
+    i < teeth;
+    i++
+) {
 
     const baseAngle =
         i * step;
+
 
     const points = [
 
@@ -87,22 +150,30 @@ for (let i = 0; i < teeth; i++) {
 
         {
             radius: outerRadius,
-            angle: baseAngle + step * 0.18
+            angle:
+                baseAngle +
+                step * 0.18
         },
 
         {
             radius: outerRadius,
-            angle: baseAngle + step * 0.42
+            angle:
+                baseAngle +
+                step * 0.42
         },
 
         {
             radius: innerRadius,
-            angle: baseAngle + step * 0.58
+            angle:
+                baseAngle +
+                step * 0.58
         },
 
         {
             radius: innerRadius,
-            angle: baseAngle + step
+            angle:
+                baseAngle +
+                step
         }
 
     ];
@@ -112,11 +183,16 @@ for (let i = 0; i < teeth; i++) {
         (point,index) => {
 
             const x =
-                Math.cos(point.angle) *
+                Math.cos(
+                    point.angle
+                ) *
                 point.radius;
 
+
             const y =
-                Math.sin(point.angle) *
+                Math.sin(
+                    point.angle
+                ) *
                 point.radius;
 
 
@@ -125,37 +201,54 @@ for (let i = 0; i < teeth; i++) {
                 index === 0
             ) {
 
-                gearShape.moveTo(x,y);
+                gearShape.moveTo(
+                    x,
+                    y
+                );
 
             } else {
 
-                gearShape.lineTo(x,y);
+                gearShape.lineTo(
+                    x,
+                    y
+                );
 
             }
 
         }
     );
+
 }
 
 
-/* HOLE */
+/* =========================
+   GEAR HOLE
+========================= */
 
 const hole =
     new THREE.Path();
 
-const holeRadius = 0.65;
+
+const holeRadius =
+    0.65;
 
 
-for (let i = 0; i <= 64; i++) {
+for (
+    let i = 0;
+    i <= 64;
+    i++
+) {
 
     const angle =
         (i / 64) *
         Math.PI *
         2;
 
+
     const x =
         Math.cos(angle) *
         holeRadius;
+
 
     const y =
         Math.sin(angle) *
@@ -164,25 +257,37 @@ for (let i = 0; i <= 64; i++) {
 
     if (i === 0) {
 
-        hole.moveTo(x,y);
+        hole.moveTo(
+            x,
+            y
+        );
 
     } else {
 
-        hole.lineTo(x,y);
+        hole.lineTo(
+            x,
+            y
+        );
 
     }
+
 }
 
 
-gearShape.holes.push(hole);
+gearShape.holes.push(
+    hole
+);
 
 
-/* GEOMETRY */
+/* =========================
+   GEOMETRY
+========================= */
 
 const geometry =
     new THREE.ExtrudeGeometry(
         gearShape,
         {
+
             depth: 0.75,
 
             bevelEnabled: true,
@@ -192,25 +297,33 @@ const geometry =
             bevelSize: 0.09,
 
             bevelThickness: 0.09
+
         }
     );
+
 
 geometry.center();
 
 
-/* MATERIAL */
+/* =========================
+   MATERIAL
+========================= */
 
 const material =
     new THREE.MeshStandardMaterial({
 
-        color: 0x00e5e5,
+        color: 0xffffff,
 
-        metalness: 0.85,
+        metalness: 0.8,
 
-        roughness: 0.22
+        roughness: 0.25
 
     });
 
+
+/* =========================
+   GEAR
+========================= */
 
 const gear =
     new THREE.Mesh(
@@ -225,12 +338,19 @@ gear.scale.set(
     1.15
 );
 
-gear.rotation.y = 0.25;
 
-scene.add(gear);
+gear.rotation.y =
+    0.25;
 
 
-/* CENTER RING */
+scene.add(
+    gear
+);
+
+
+/* =========================
+   CENTER RING
+========================= */
 
 const ringGeometry =
     new THREE.RingGeometry(
@@ -243,7 +363,7 @@ const ringGeometry =
 const ringMaterial =
     new THREE.MeshStandardMaterial({
 
-        color: 0x00ffff,
+        color: 0xffffff,
 
         metalness: 0.9,
 
@@ -260,31 +380,49 @@ const ring =
         ringMaterial
     );
 
-ring.position.z = 0.4;
 
-scene.add(ring);
+ring.position.z =
+    0.4;
 
 
-/* ANIMATION */
+scene.add(
+    ring
+);
+
+
+/* =========================
+   ANIMATION
+========================= */
 
 function animate() {
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(
+        animate
+    );
 
-    gear.rotation.z += 0.006;
 
-    ring.rotation.z -= 0.008;
+    gear.rotation.z +=
+        0.004;
+
+
+    ring.rotation.z -=
+        0.006;
+
 
     renderer.render(
         scene,
         camera
     );
+
 }
+
 
 animate();
 
 
-/* RESIZE */
+/* =========================
+   RESIZE
+========================= */
 
 window.addEventListener(
     "resize",
@@ -292,6 +430,7 @@ window.addEventListener(
 
         const width =
             container.clientWidth;
+
 
         const height =
             container.clientHeight;
@@ -301,12 +440,15 @@ window.addEventListener(
             width === 0 ||
             height === 0
         ) {
+
             return;
+
         }
 
 
         camera.aspect =
             width / height;
+
 
         camera.updateProjectionMatrix();
 
