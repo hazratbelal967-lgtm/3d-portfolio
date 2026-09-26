@@ -13,7 +13,7 @@ html {
 }
 
 body {
-    background: #050505;
+    background: #700000;
     color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
@@ -43,15 +43,18 @@ nav {
 
     padding: 0 5%;
 
-    background: #050505;
+    background: #520000;
 
     position: relative;
     z-index: 100;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .logo {
     font-size: 30px;
     font-weight: 800;
+    color: #ffffff;
 }
 
 .nav-links {
@@ -63,7 +66,6 @@ nav {
 .nav-links a {
     font-size: 15px;
     color: #ffffff;
-
     transition: 0.3s ease;
 }
 
@@ -94,6 +96,14 @@ nav {
     padding: 45px 5% 65px;
 
     overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #a80000 0%,
+            #700000 45%,
+            #520000 100%
+        );
 }
 
 .hero-text {
@@ -125,7 +135,7 @@ nav {
 .description {
     max-width: 560px;
 
-    color: #c7c7c7;
+    color: #ffffff;
 
     font-size: 18px;
 
@@ -161,7 +171,7 @@ nav {
 
     background: #ffffff;
 
-    color: #050505;
+    color: #520000;
 
     border: 1px solid #ffffff;
 
@@ -179,8 +189,10 @@ nav {
 
     border-color: #00ffff;
 
+    color: #050505;
+
     box-shadow:
-        0 0 25px rgba(0, 255, 255, 0.3);
+        0 0 25px rgba(0, 255, 255, 0.35);
 }
 
 .button-outline {
@@ -199,7 +211,7 @@ nav {
 
 
 /* =========================================================
-   THREE.JS
+   THREE.JS GEAR
 ========================================================= */
 
 #three-container {
@@ -228,7 +240,7 @@ nav {
 
 
 /* =========================================================
-   PROFILE
+   PROFILE PHOTO
 ========================================================= */
 
 .profile-photo {
@@ -246,7 +258,7 @@ nav {
 
     border: 2px solid #00ffff;
 
-    background: #101010;
+    background: #520000;
 
     box-shadow:
         0 0 35px rgba(0, 255, 255, 0.35);
@@ -258,7 +270,7 @@ nav {
     transform: translateY(-5px);
 
     box-shadow:
-        0 0 45px rgba(0, 255, 255, 0.45);
+        0 0 45px rgba(0, 255, 255, 0.5);
 }
 
 .profile-photo img {
@@ -285,7 +297,14 @@ section:not(.hero) {
 
     padding: 100px 5%;
 
-    border-top: 1px solid #151515;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    background:
+        linear-gradient(
+            180deg,
+            #700000 0%,
+            #5c0000 100%
+        );
 }
 
 .section-wrapper {
@@ -331,7 +350,7 @@ h2 {
 }
 
 .about-text p {
-    color: #c9c9c9;
+    color: #ffffff;
 
     font-size: 17px;
 
@@ -351,11 +370,11 @@ h2 {
 .stat-card {
     padding: 23px;
 
-    border: 1px solid #303030;
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
     border-radius: 16px;
 
-    background: #101010;
+    background: rgba(50, 0, 0, 0.45);
 
     transition: 0.3s ease;
 }
@@ -364,6 +383,9 @@ h2 {
     border-color: #00ffff;
 
     transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .stat-card strong {
@@ -377,7 +399,7 @@ h2 {
 }
 
 .stat-card span {
-    color: #bdbdbd;
+    color: #ffffff;
 
     font-size: 14px;
 }
@@ -401,9 +423,9 @@ h2 {
 
     padding: 28px;
 
-    background: #101010;
+    background: rgba(50, 0, 0, 0.5);
 
-    border: 1px solid #303030;
+    border: 1px solid rgba(255, 255, 255, 0.22);
 
     border-radius: 18px;
 
@@ -416,7 +438,7 @@ h2 {
     border-color: #00ffff;
 
     box-shadow:
-        0 10px 30px rgba(0, 255, 255, 0.08);
+        0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .skill-number {
@@ -436,7 +458,7 @@ h2 {
 }
 
 .skill-box p {
-    color: #bdbdbd;
+    color: #ffffff;
 
     font-size: 14px;
 
@@ -462,9 +484,9 @@ h2 {
 
     padding: 25px;
 
-    background: #101010;
+    background: rgba(50, 0, 0, 0.55);
 
-    border: 1px solid #303030;
+    border: 1px solid rgba(255, 255, 255, 0.22);
 
     border-radius: 20px;
 
@@ -479,7 +501,7 @@ h2 {
     border-color: #00ffff;
 
     box-shadow:
-        0 15px 40px rgba(0, 255, 255, 0.1);
+        0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .project-image {
@@ -509,7 +531,7 @@ h2 {
 }
 
 .project-card > p {
-    color: #bdbdbd;
+    color: #ffffff;
 
     font-size: 14px;
 
@@ -521,11 +543,11 @@ h2 {
 
     padding-top: 18px;
 
-    border-top: 1px solid #292929;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .project-details p {
-    color: #bdbdbd;
+    color: #ffffff;
 
     font-size: 13px;
 
@@ -551,7 +573,7 @@ h2 {
 .project-tags span {
     padding: 7px 12px;
 
-    border: 1px solid #333333;
+    border: 1px solid #00ffff;
 
     border-radius: 20px;
 
@@ -574,7 +596,7 @@ h2 {
 
     margin: 0 auto 40px;
 
-    color: #bdbdbd;
+    color: #ffffff;
 
     font-size: 16px;
 
@@ -607,11 +629,11 @@ h2 {
 
     padding: 20px 25px;
 
-    border: 1px solid #303030;
+    border: 1px solid rgba(255, 255, 255, 0.22);
 
     border-radius: 16px;
 
-    background: #101010;
+    background: rgba(50, 0, 0, 0.5);
 
     text-align: left;
 
@@ -624,7 +646,7 @@ h2 {
     border-color: #00ffff;
 
     box-shadow:
-        0 10px 30px rgba(0, 255, 255, 0.08);
+        0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .contact-icon {
@@ -636,7 +658,7 @@ h2 {
 }
 
 .contact-card p {
-    color: #999999;
+    color: #ffffff;
 
     font-size: 13px;
 
@@ -649,15 +671,17 @@ h2 {
 ========================================================= */
 
 footer {
-    border-top: 1px solid #151515;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
 
     padding: 30px 5%;
 
     text-align: center;
 
-    color: #777777;
+    color: #ffffff;
 
     font-size: 13px;
+
+    background: #520000;
 }
 
 
