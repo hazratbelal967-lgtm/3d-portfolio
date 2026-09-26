@@ -29,9 +29,7 @@ renderer.setPixelRatio(
 container.appendChild(renderer.domElement);
 
 
-/* =========================
-   LIGHTING
-========================= */
+/* LIGHTS */
 
 const ambientLight = new THREE.AmbientLight(
     0xffffff,
@@ -46,11 +44,7 @@ const mainLight = new THREE.DirectionalLight(
     3
 );
 
-mainLight.position.set(
-    5,
-    5,
-    8
-);
+mainLight.position.set(5,5,8);
 
 scene.add(mainLight);
 
@@ -60,18 +54,12 @@ const cyanLight = new THREE.DirectionalLight(
     2
 );
 
-cyanLight.position.set(
-    -5,
-    2,
-    5
-);
+cyanLight.position.set(-5,2,5);
 
 scene.add(cyanLight);
 
 
-/* =========================
-   GEAR
-========================= */
+/* GEAR */
 
 const gearShape = new THREE.Shape();
 
@@ -121,15 +109,15 @@ for (let i = 0; i < teeth; i++) {
 
 
     points.forEach(
-        (point, index) => {
+        (point,index) => {
 
             const x =
-                Math.cos(point.angle)
-                * point.radius;
+                Math.cos(point.angle) *
+                point.radius;
 
             const y =
-                Math.sin(point.angle)
-                * point.radius;
+                Math.sin(point.angle) *
+                point.radius;
 
 
             if (
@@ -137,29 +125,20 @@ for (let i = 0; i < teeth; i++) {
                 index === 0
             ) {
 
-                gearShape.moveTo(
-                    x,
-                    y
-                );
+                gearShape.moveTo(x,y);
 
             } else {
 
-                gearShape.lineTo(
-                    x,
-                    y
-                );
+                gearShape.lineTo(x,y);
 
             }
 
         }
     );
-
 }
 
 
-/* =========================
-   GEAR HOLE
-========================= */
+/* HOLE */
 
 const hole =
     new THREE.Path();
@@ -167,51 +146,38 @@ const hole =
 const holeRadius = 0.65;
 
 
-for (
-    let i = 0;
-    i <= 64;
-    i++
-) {
+for (let i = 0; i <= 64; i++) {
 
     const angle =
-        (i / 64)
-        * Math.PI
-        * 2;
+        (i / 64) *
+        Math.PI *
+        2;
 
     const x =
-        Math.cos(angle)
-        * holeRadius;
+        Math.cos(angle) *
+        holeRadius;
 
     const y =
-        Math.sin(angle)
-        * holeRadius;
+        Math.sin(angle) *
+        holeRadius;
 
 
     if (i === 0) {
 
-        hole.moveTo(
-            x,
-            y
-        );
+        hole.moveTo(x,y);
 
     } else {
 
-        hole.lineTo(
-            x,
-            y
-        );
+        hole.lineTo(x,y);
 
     }
-
 }
 
 
 gearShape.holes.push(hole);
 
 
-/* =========================
-   GEAR GEOMETRY
-========================= */
+/* GEOMETRY */
 
 const geometry =
     new THREE.ExtrudeGeometry(
@@ -232,9 +198,7 @@ const geometry =
 geometry.center();
 
 
-/* =========================
-   GEAR MATERIAL
-========================= */
+/* MATERIAL */
 
 const material =
     new THREE.MeshStandardMaterial({
@@ -266,9 +230,7 @@ gear.rotation.y = 0.25;
 scene.add(gear);
 
 
-/* =========================
-   CENTER RING
-========================= */
+/* CENTER RING */
 
 const ringGeometry =
     new THREE.RingGeometry(
@@ -298,42 +260,31 @@ const ring =
         ringMaterial
     );
 
-
 ring.position.z = 0.4;
 
 scene.add(ring);
 
 
-/* =========================
-   ANIMATION
-========================= */
+/* ANIMATION */
 
 function animate() {
 
-    requestAnimationFrame(
-        animate
-    );
-
+    requestAnimationFrame(animate);
 
     gear.rotation.z += 0.006;
 
     ring.rotation.z -= 0.008;
 
-
     renderer.render(
         scene,
         camera
     );
-
 }
-
 
 animate();
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESIZE */
 
 window.addEventListener(
     "resize",
@@ -350,9 +301,7 @@ window.addEventListener(
             width === 0 ||
             height === 0
         ) {
-
             return;
-
         }
 
 
