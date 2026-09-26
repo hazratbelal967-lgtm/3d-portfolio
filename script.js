@@ -1,3 +1,4 @@
+alert("NEW SCRIPT IS RUNNING");
 const container = document.getElementById("three-container");
 
 
