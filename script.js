@@ -1,16 +1,16 @@
 const container = document.getElementById("three-container");
 
 
-// ===============================
+// =========================================================
 // SCENE
-// ===============================
+// =========================================================
 
 const scene = new THREE.Scene();
 
 
-// ===============================
+// =========================================================
 // CAMERA
-// ===============================
+// =========================================================
 
 const camera = new THREE.PerspectiveCamera(
     45,
@@ -22,9 +22,9 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.set(0, 0, 7);
 
 
-// ===============================
+// =========================================================
 // RENDERER
-// ===============================
+// =========================================================
 
 const renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -43,9 +43,9 @@ renderer.setPixelRatio(
 container.appendChild(renderer.domElement);
 
 
-// ===============================
+// =========================================================
 // LIGHTING
-// ===============================
+// =========================================================
 
 const ambientLight = new THREE.AmbientLight(
     0xffffff,
@@ -69,23 +69,23 @@ mainLight.position.set(
 scene.add(mainLight);
 
 
-const sideLight = new THREE.DirectionalLight(
+const cyanLight = new THREE.DirectionalLight(
     0x00ffff,
     2
 );
 
-sideLight.position.set(
+cyanLight.position.set(
     -5,
     2,
     5
 );
 
-scene.add(sideLight);
+scene.add(cyanLight);
 
 
-// ===============================
-// CREATE MECHANICAL GEAR
-// ===============================
+// =========================================================
+// GEAR SHAPE
+// =========================================================
 
 const gearShape = new THREE.Shape();
 
@@ -94,18 +94,13 @@ const teeth = 16;
 const outerRadius = 2.0;
 const innerRadius = 1.55;
 
-const toothWidth = 0.055;
+const step = (Math.PI * 2) / teeth;
+
 
 for (let i = 0; i < teeth; i++) {
 
-    const baseAngle =
-        (i / teeth) * Math.PI * 2;
+    const baseAngle = i * step;
 
-    const step =
-        (Math.PI * 2) / teeth;
-
-
-    // Four main points for each tooth
 
     const points = [
 
@@ -127,6 +122,11 @@ for (let i = 0; i < teeth; i++) {
         {
             radius: innerRadius,
             angle: baseAngle + step * 0.58
+        },
+
+        {
+            radius: innerRadius,
+            angle: baseAngle + step
         }
 
     ];
@@ -155,34 +155,17 @@ for (let i = 0; i < teeth; i++) {
 
     });
 
-
-    // Small gap before next tooth
-
-    const gapAngle =
-        baseAngle + step * 0.95;
-
-    const gapX =
-        Math.cos(gapAngle) *
-        innerRadius;
-
-    const gapY =
-        Math.sin(gapAngle) *
-        innerRadius;
-
-    gearShape.lineTo(
-        gapX,
-        gapY
-    );
 }
 
 
-// ===============================
+// =========================================================
 // CENTER HOLE
-// ===============================
+// =========================================================
 
 const hole = new THREE.Path();
 
 const holeRadius = 0.65;
+
 
 for (let i = 0; i <= 64; i++) {
 
@@ -210,62 +193,54 @@ for (let i = 0; i <= 64; i++) {
 
 }
 
+
 gearShape.holes.push(hole);
 
 
-// ===============================
-// 3D EXTRUSION
-// ===============================
+// =========================================================
+// 3D GEOMETRY
+// =========================================================
 
-const geometry =
-    new THREE.ExtrudeGeometry(
-        gearShape,
-        {
-            depth: 0.75,
+const geometry = new THREE.ExtrudeGeometry(
+    gearShape,
+    {
+        depth: 0.75,
 
-            bevelEnabled: true,
+        bevelEnabled: true,
 
-            bevelSegments: 4,
+        bevelSegments: 4,
 
-            bevelSize: 0.09,
+        bevelSize: 0.09,
 
-            bevelThickness: 0.09
-        }
-    );
-
-
-// Center the geometry
+        bevelThickness: 0.09
+    }
+);
 
 geometry.center();
 
 
-// ===============================
+// =========================================================
 // MATERIAL
-// ===============================
+// =========================================================
 
-const material =
-    new THREE.MeshStandardMaterial({
+const material = new THREE.MeshStandardMaterial({
 
-        color: 0x00dfe6,
+    color: 0x00e5e5,
 
-        metalness: 0.85,
+    metalness: 0.85,
 
-        roughness: 0.22
-    });
-
-
-// ===============================
-// CREATE GEAR MESH
-// ===============================
-
-const gear =
-    new THREE.Mesh(
-        geometry,
-        material
-    );
+    roughness: 0.22
+});
 
 
-// Front-facing position
+// =========================================================
+// GEAR
+// =========================================================
+
+const gear = new THREE.Mesh(
+    geometry,
+    material
+);
 
 gear.rotation.x = 0;
 
@@ -273,71 +248,57 @@ gear.rotation.y = 0.25;
 
 gear.rotation.z = 0;
 
-
-// Slight size adjustment
-
 gear.scale.set(
     1.05,
     1.05,
     1.05
 );
 
-
 scene.add(gear);
 
 
-// ===============================
-// INNER HUB RING
-// ===============================
+// =========================================================
+// INNER RING
+// =========================================================
 
-const ringGeometry =
-    new THREE.RingGeometry(
-        0.66,
-        0.82,
-        64
-    );
+const ringGeometry = new THREE.RingGeometry(
+    0.66,
+    0.82,
+    64
+);
 
-const ringMaterial =
-    new THREE.MeshStandardMaterial({
+const ringMaterial = new THREE.MeshStandardMaterial({
 
-        color: 0x00ffff,
+    color: 0x00ffff,
 
-        metalness: 0.9,
+    metalness: 0.9,
 
-        roughness: 0.2,
+    roughness: 0.2,
 
-        side: THREE.DoubleSide
-    });
+    side: THREE.DoubleSide
+});
 
-const ring =
-    new THREE.Mesh(
-        ringGeometry,
-        ringMaterial
-    );
+const ring = new THREE.Mesh(
+    ringGeometry,
+    ringMaterial
+);
 
 ring.position.z = 0.4;
 
 scene.add(ring);
 
 
-// ===============================
+// =========================================================
 // ANIMATION
-// ===============================
+// =========================================================
 
 function animate() {
 
     requestAnimationFrame(animate);
 
-
-    // Main gear rotation
-
     gear.rotation.z += 0.006;
 
-
-    // Inner ring rotates slightly
-
     ring.rotation.z -= 0.008;
-
 
     renderer.render(
         scene,
@@ -345,13 +306,12 @@ function animate() {
     );
 }
 
-
 animate();
 
 
-// ===============================
+// =========================================================
 // RESPONSIVE
-// ===============================
+// =========================================================
 
 window.addEventListener(
     "resize",
@@ -364,6 +324,11 @@ window.addEventListener(
             container.clientHeight;
 
 
+        if (width === 0 || height === 0) {
+            return;
+        }
+
+
         camera.aspect =
             width / height;
 
@@ -373,6 +338,10 @@ window.addEventListener(
         renderer.setSize(
             width,
             height
+        );
+
+        renderer.setPixelRatio(
+            Math.min(window.devicePixelRatio, 2)
         );
 
     }
