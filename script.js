@@ -1,383 +1,80 @@
-/* =====================================================
-   LOADER
-===================================================== */
-
-let loaderPercent = 0;
-
-const loader =
-    document.getElementById("loader");
-
-const loaderNumber =
-    document.getElementById("loaderPercent");
-
-const loaderBar =
-    document.querySelector(".loader-line span");
+/* =========================================================
+   HAZRAT BELAL — INTERACTIVE 3D PORTFOLIO
+   ========================================================= */
 
 
-const loaderInterval =
-    setInterval(() => {
+/* =========================================================
+   CUSTOM CURSOR
+   ========================================================= */
 
-        loaderPercent += Math.floor(
-            Math.random() * 8
-        ) + 2;
+const cursor = document.querySelector(".cursor");
+const cursorRing = document.querySelector(".cursor-ring");
 
-        if (loaderPercent >= 100) {
+document.addEventListener("mousemove", (e) => {
 
-            loaderPercent = 100;
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
 
-            clearInterval(loaderInterval);
+    cursorRing.style.left = e.clientX + "px";
+    cursorRing.style.top = e.clientY + "px";
 
-            setTimeout(() => {
-
-                loader.style.opacity = "0";
-                loader.style.pointerEvents = "none";
-
-                setTimeout(() => {
-
-                    loader.remove();
-
-                }, 500);
-
-            }, 400);
-
-        }
-
-        loaderNumber.textContent =
-            loaderPercent;
-
-        loaderBar.style.width =
-            loaderPercent + "%";
-
-    }, 70);
+});
 
 
-/* =====================================================
-   CURSOR
-===================================================== */
-
-const cursorDot =
-    document.querySelector(".cursor-dot");
-
-const cursorRing =
-    document.querySelector(".cursor-ring");
+const interactiveElements =
+    document.querySelectorAll(
+        "a, button, .skill-card, .project-card, .info-card"
+    );
 
 
-document.addEventListener(
-    "mousemove",
-    (event) => {
+interactiveElements.forEach((element) => {
 
-        cursorDot.style.left =
-            event.clientX + "px";
+    element.addEventListener("mouseenter", () => {
 
-        cursorDot.style.top =
-            event.clientY + "px";
+        cursorRing.classList.add("active");
 
-        cursorRing.animate(
-            {
-                left: event.clientX - 14 + "px",
-                top: event.clientY - 14 + "px"
-            },
-            {
-                duration: 180,
-                fill: "forwards"
-            }
-        );
+    });
 
-    }
-);
+    element.addEventListener("mouseleave", () => {
+
+        cursorRing.classList.remove("active");
+
+    });
+
+});
 
 
-/* =====================================================
-   CLICK FLASH
-===================================================== */
+/* =========================================================
+   CLICK FLASH EFFECT
+   ========================================================= */
 
 const clickFlash =
-    document.getElementById("clickFlash");
+    document.querySelector(".click-flash");
 
 
-document.addEventListener(
-    "click",
-    () => {
+document.addEventListener("click", (e) => {
 
-        clickFlash.classList.remove(
-            "active"
-        );
+    clickFlash.style.left =
+        e.clientX + "px";
 
-        void clickFlash.offsetWidth;
+    clickFlash.style.top =
+        e.clientY + "px";
 
-        clickFlash.classList.add(
-            "active"
-        );
+    clickFlash.classList.remove("active");
 
-    }
-);
+    void clickFlash.offsetWidth;
 
+    clickFlash.classList.add("active");
 
-/* =====================================================
-   MOBILE MENU
-===================================================== */
+});
 
-const menuButton =
-    document.getElementById("menuButton");
 
-const mobileMenu =
-    document.getElementById("mobileMenu");
-
-
-menuButton.addEventListener(
-    "click",
-    () => {
-
-        mobileMenu.classList.toggle(
-            "active"
-        );
-
-    }
-);
-
-
-document.querySelectorAll(
-    ".mobile-menu a"
-).forEach(
-    (link) => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                mobileMenu.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =====================================================
-   TYPING EFFECT
-===================================================== */
-
-const typingElement =
-    document.getElementById("typingText");
-
-
-const typingWords = [
-
-    "MECHANICAL ENGINEERING STUDENT",
-    "CAD & 3D DESIGN LEARNER",
-    "ARDUINO ENGINEERING ENTHUSIAST",
-    "FUTURE OIL & GAS ENGINEER"
-
-];
-
-
-let wordIndex = 0;
-let characterIndex = 0;
-let deleting = false;
-
-
-function typingEffect() {
-
-    const currentWord =
-        typingWords[wordIndex];
-
-    if (!deleting) {
-
-        characterIndex++;
-
-        typingElement.textContent =
-            currentWord.substring(
-                0,
-                characterIndex
-            );
-
-        if (
-            characterIndex ===
-            currentWord.length
-        ) {
-
-            deleting = true;
-
-            setTimeout(
-                typingEffect,
-                1500
-            );
-
-            return;
-
-        }
-
-    } else {
-
-        characterIndex--;
-
-        typingElement.textContent =
-            currentWord.substring(
-                0,
-                characterIndex
-            );
-
-        if (characterIndex === 0) {
-
-            deleting = false;
-
-            wordIndex++;
-
-            if (
-                wordIndex >=
-                typingWords.length
-            ) {
-
-                wordIndex = 0;
-
-            }
-
-        }
-
-    }
-
-    setTimeout(
-        typingEffect,
-        deleting ? 35 : 65
-    );
-
-}
-
-typingEffect();
-
-
-/* =====================================================
-   TERMINAL TEXT
-===================================================== */
-
-const terminalText =
-    document.getElementById("terminalText");
-
-
-const terminalMessages = [
-
-    "ENGINEERING SYSTEM READY...",
-    "MECHANICAL CORE INITIALIZED...",
-    "CAD MODULE STANDBY...",
-    "ARDUINO MODULE ONLINE...",
-    "PROJECT DATABASE LOADED...",
-    "CAREER PATH: OIL & GAS...",
-    "SYSTEM STATUS: OPERATIONAL..."
-
-];
-
-
-let terminalIndex = 0;
-
-
-setInterval(() => {
-
-    terminalText.style.opacity = "0";
-
-    setTimeout(() => {
-
-        terminalIndex++;
-
-        if (
-            terminalIndex >=
-            terminalMessages.length
-        ) {
-
-            terminalIndex = 0;
-
-        }
-
-        terminalText.textContent =
-            terminalMessages[
-                terminalIndex
-            ];
-
-        terminalText.style.opacity = "1";
-
-    }, 250);
-
-}, 2600);
-
-
-/* =====================================================
-   3D CARD TILT
-===================================================== */
-
-const tiltCards =
-    document.querySelectorAll(
-        ".tilt-card"
-    );
-
-
-tiltCards.forEach(
-    (card) => {
-
-        card.addEventListener(
-            "mousemove",
-            (event) => {
-
-                const rect =
-                    card.getBoundingClientRect();
-
-                const x =
-                    event.clientX -
-                    rect.left;
-
-                const y =
-                    event.clientY -
-                    rect.top;
-
-                const centerX =
-                    rect.width / 2;
-
-                const centerY =
-                    rect.height / 2;
-
-                const rotateX =
-                    ((y - centerY) /
-                        centerY) *
-                    -4;
-
-                const rotateY =
-                    ((x - centerX) /
-                        centerX) *
-                    4;
-
-                card.style.transform =
-                    `perspective(900px)
-                     rotateX(${rotateX}deg)
-                     rotateY(${rotateY}deg)
-                     translateY(-5px)`;
-
-            }
-        );
-
-
-        card.addEventListener(
-            "mouseleave",
-            () => {
-
-                card.style.transform =
-                    "";
-
-            }
-        );
-
-    }
-);
-
-
-/* =====================================================
-   THREE.JS
-===================================================== */
+/* =========================================================
+   THREE.JS BACKGROUND
+   ========================================================= */
 
 const container =
-    document.getElementById(
-        "three-container"
-    );
+    document.getElementById("three-background");
 
 
 if (container && typeof THREE !== "undefined") {
@@ -389,30 +86,22 @@ if (container && typeof THREE !== "undefined") {
 
     const camera =
         new THREE.PerspectiveCamera(
-            45,
-            container.clientWidth /
-            container.clientHeight,
+            50,
+            window.innerWidth /
+            window.innerHeight,
             0.1,
             1000
         );
 
 
-    camera.position.z = 7;
+    camera.position.z = 8;
 
 
     const renderer =
         new THREE.WebGLRenderer({
-
             antialias: true,
             alpha: true
-
         });
-
-
-    renderer.setSize(
-        container.clientWidth,
-        container.clientHeight
-    );
 
 
     renderer.setPixelRatio(
@@ -423,59 +112,65 @@ if (container && typeof THREE !== "undefined") {
     );
 
 
+    renderer.setSize(
+        window.innerWidth,
+        window.innerHeight
+    );
+
+
     container.appendChild(
         renderer.domElement
     );
 
 
-    /* =================================================
+    /* =====================================================
        LIGHTS
-    ================================================= */
+       ===================================================== */
 
     const ambient =
         new THREE.AmbientLight(
             0xffffff,
-            1.8
+            0.7
         );
 
     scene.add(ambient);
 
 
-    const greenLight =
+    const redLight =
         new THREE.PointLight(
-            0x00ff9c,
+            0xff1738,
             5,
             20
         );
 
-    greenLight.position.set(
+    redLight.position.set(
         4,
-        3,
+        2,
         5
     );
 
-    scene.add(greenLight);
+    scene.add(redLight);
 
 
-    const cyanLight =
+    const purpleLight =
         new THREE.PointLight(
-            0x00eaff,
-            3,
+            0x8b36ff,
+            4,
             20
         );
 
-    cyanLight.position.set(
-        -4,
+    purpleLight.position.set(
+        -5,
         -2,
         4
     );
 
-    scene.add(cyanLight);
+    scene.add(purpleLight);
 
 
-    /* =================================================
+    /* =====================================================
        GEAR
-    ================================================= */
+       ===================================================== */
 
     const gearShape =
         new THREE.Shape();
@@ -485,11 +180,10 @@ if (container && typeof THREE !== "undefined") {
 
     const outerRadius = 2.15;
 
-    const innerRadius = 1.62;
+    const innerRadius = 1.65;
 
     const step =
-        (Math.PI * 2) /
-        teeth;
+        Math.PI * 2 / teeth;
 
 
     for (
@@ -516,12 +210,12 @@ if (container && typeof THREE !== "undefined") {
 
             {
                 r: outerRadius,
-                a: angle + step * 0.43
+                a: angle + step * 0.42
             },
 
             {
                 r: innerRadius,
-                a: angle + step * 0.60
+                a: angle + step * 0.58
             }
 
         ];
@@ -564,16 +258,16 @@ if (container && typeof THREE !== "undefined") {
     }
 
 
-    /* =================================================
-       GEAR HOLE
-    ================================================= */
+    gearShape.closePath();
+
+
+    /* center hole */
 
     const hole =
         new THREE.Path();
 
 
-    const holeRadius =
-        0.65;
+    const holeRadius = 0.65;
 
 
     for (
@@ -616,20 +310,13 @@ if (container && typeof THREE !== "undefined") {
     }
 
 
-    gearShape.holes.push(
-        hole
-    );
+    gearShape.holes.push(hole);
 
-
-    /* =================================================
-       GEAR GEOMETRY
-    ================================================= */
 
     const gearGeometry =
         new THREE.ExtrudeGeometry(
             gearShape,
             {
-
                 depth: 0.55,
 
                 bevelEnabled: true,
@@ -638,8 +325,7 @@ if (container && typeof THREE !== "undefined") {
 
                 bevelSize: 0.07,
 
-                bevelThickness: 0.07
-
+                bevelThickness: 0.06
             }
         );
 
@@ -650,11 +336,11 @@ if (container && typeof THREE !== "undefined") {
     const gearMaterial =
         new THREE.MeshStandardMaterial({
 
-            color: 0x00ff9c,
+            color: 0xffffff,
 
-            metalness: 0.85,
+            metalness: 0.9,
 
-            roughness: 0.25
+            roughness: 0.22
 
         });
 
@@ -667,114 +353,69 @@ if (container && typeof THREE !== "undefined") {
 
 
     gear.scale.set(
-        0.95,
-        0.95,
-        0.95
+        1.35,
+        1.35,
+        1.35
+    );
+
+
+    gear.position.set(
+        2.7,
+        0.2,
+        -1
     );
 
 
     gear.rotation.x =
-        Math.PI * 0.22;
-
+        0.55;
 
     gear.rotation.y =
-        Math.PI * 0.15;
+        0.35;
 
 
     scene.add(gear);
 
 
-    /* =================================================
-       INNER RING
-    ================================================= */
+    /* =====================================================
+       SECOND GEAR
+       ===================================================== */
 
-    const ringGeometry =
-        new THREE.TorusGeometry(
-            0.75,
-            0.035,
-            12,
-            64
-        );
-
-
-    const ringMaterial =
-        new THREE.MeshStandardMaterial({
-
-            color: 0x00eaff,
-
-            metalness: 0.8,
-
-            roughness: 0.2
-
-        });
-
-
-    const ring =
+    const gear2 =
         new THREE.Mesh(
-            ringGeometry,
-            ringMaterial
+            gearGeometry,
+            gearMaterial
         );
 
 
-    ring.position.z =
-        0.5;
+    gear2.scale.set(
+        0.55,
+        0.55,
+        0.55
+    );
 
 
-    scene.add(ring);
+    gear2.position.set(
+        4.1,
+        -1.3,
+        -1.5
+    );
 
 
-    /* =================================================
-       ORBIT RING
-    ================================================= */
-
-    const orbitGeometry =
-        new THREE.TorusGeometry(
-            2.65,
-            0.012,
-            8,
-            100
-        );
+    gear2.rotation.x =
+        -0.4;
 
 
-    const orbitMaterial =
-        new THREE.MeshBasicMaterial({
-
-            color: 0x00ff9c,
-
-            transparent: true,
-
-            opacity: 0.55
-
-        });
+    scene.add(gear2);
 
 
-    const orbit =
-        new THREE.Mesh(
-            orbitGeometry,
-            orbitMaterial
-        );
-
-
-    orbit.rotation.x =
-        Math.PI / 2.7;
-
-
-    scene.add(orbit);
-
-
-    /* =================================================
+    /* =====================================================
        PARTICLES
-    ================================================= */
+       ===================================================== */
 
-    const particleCount =
-        300;
-
-
-    const particleGeometry =
-        new THREE.BufferGeometry();
+    const particleCount = 900;
 
 
-    const particlePositions =
+    const positions =
         new Float32Array(
             particleCount * 3
         );
@@ -786,28 +427,29 @@ if (container && typeof THREE !== "undefined") {
         i++
     ) {
 
-        particlePositions[
-            i * 3
-        ] =
-            (Math.random() - 0.5) * 8;
+        positions[i * 3] =
+            (Math.random() - 0.5) *
+            16;
 
-        particlePositions[
-            i * 3 + 1
-        ] =
-            (Math.random() - 0.5) * 8;
+        positions[i * 3 + 1] =
+            (Math.random() - 0.5) *
+            10;
 
-        particlePositions[
-            i * 3 + 2
-        ] =
-            (Math.random() - 0.5) * 6;
+        positions[i * 3 + 2] =
+            (Math.random() - 0.5) *
+            8;
 
     }
+
+
+    const particleGeometry =
+        new THREE.BufferGeometry();
 
 
     particleGeometry.setAttribute(
         "position",
         new THREE.BufferAttribute(
-            particlePositions,
+            positions,
             3
         )
     );
@@ -816,13 +458,13 @@ if (container && typeof THREE !== "undefined") {
     const particleMaterial =
         new THREE.PointsMaterial({
 
-            color: 0x00ff9c,
+            color: 0xffffff,
 
-            size: 0.025,
+            size: 0.018,
 
             transparent: true,
 
-            opacity: 0.65
+            opacity: 0.55
 
         });
 
@@ -837,13 +479,57 @@ if (container && typeof THREE !== "undefined") {
     scene.add(particles);
 
 
-    /* =================================================
+    /* =====================================================
+       WIREFRAME SPHERE
+       ===================================================== */
+
+    const sphereGeometry =
+        new THREE.IcosahedronGeometry(
+            2.8,
+            2
+        );
+
+
+    const sphereMaterial =
+        new THREE.MeshBasicMaterial({
+
+            color: 0xff1738,
+
+            wireframe: true,
+
+            transparent: true,
+
+            opacity: 0.055
+
+        });
+
+
+    const sphere =
+        new THREE.Mesh(
+            sphereGeometry,
+            sphereMaterial
+        );
+
+
+    sphere.position.set(
+        -3.5,
+        1.5,
+        -2
+    );
+
+
+    scene.add(sphere);
+
+
+    /* =====================================================
        MOUSE MOVEMENT
-    ================================================= */
+       ===================================================== */
 
     let mouseX = 0;
-
     let mouseY = 0;
+
+    let targetX = 0;
+    let targetY = 0;
 
 
     document.addEventListener(
@@ -853,20 +539,26 @@ if (container && typeof THREE !== "undefined") {
             mouseX =
                 (event.clientX /
                     window.innerWidth -
-                    0.5);
+                    0.5) *
+                2;
 
             mouseY =
                 (event.clientY /
                     window.innerHeight -
-                    0.5);
+                    0.5) *
+                2;
 
         }
     );
 
 
-    /* =================================================
+    /* =====================================================
        ANIMATION
-    ================================================= */
+       ===================================================== */
+
+    const clock =
+        new THREE.Clock();
+
 
     function animate() {
 
@@ -875,45 +567,81 @@ if (container && typeof THREE !== "undefined") {
         );
 
 
-        gear.rotation.z +=
-            0.004;
+        const time =
+            clock.getElapsedTime();
 
 
-        ring.rotation.z -=
-            0.008;
-
-
-        orbit.rotation.z +=
-            0.002;
-
-
-        particles.rotation.y +=
-            0.0004;
-
-
-        gear.rotation.x +=
-            (mouseY * 0.25 -
-                gear.rotation.x +
-                Math.PI * 0.22) *
+        targetX +=
+            (mouseX - targetX) *
             0.025;
+
+        targetY +=
+            (mouseY - targetY) *
+            0.025;
+
+
+        /* main gear */
+
+        gear.rotation.z +=
+            0.003;
 
 
         gear.rotation.y +=
-            (mouseX * 0.25 -
-                gear.rotation.y +
-                Math.PI * 0.15) *
-            0.025;
+            0.001;
 
 
-        const time =
-            Date.now() * 0.001;
+        gear.position.y =
+            0.2 +
+            Math.sin(time * 0.7) *
+            0.08;
 
 
-        greenLight.position.x =
-            Math.sin(time) * 4;
+        /* second gear */
 
-        greenLight.position.y =
-            Math.cos(time) * 3;
+        gear2.rotation.z -=
+            0.006;
+
+
+        /* particles */
+
+        particles.rotation.y =
+            time * 0.008;
+
+
+        particles.rotation.x =
+            targetY * 0.04;
+
+
+        /* sphere */
+
+        sphere.rotation.x +=
+            0.0008;
+
+        sphere.rotation.y +=
+            0.001;
+
+
+        /* camera movement */
+
+        camera.position.x +=
+            (
+                targetX * 0.25 -
+                camera.position.x
+            ) * 0.02;
+
+
+        camera.position.y +=
+            (
+                -targetY * 0.18 -
+                camera.position.y
+            ) * 0.02;
+
+
+        camera.lookAt(
+            0,
+            0,
+            0
+        );
 
 
         renderer.render(
@@ -927,41 +655,25 @@ if (container && typeof THREE !== "undefined") {
     animate();
 
 
-    /* =================================================
+    /* =====================================================
        RESIZE
-    ================================================= */
+       ===================================================== */
 
     window.addEventListener(
         "resize",
         () => {
 
-            const width =
-                container.clientWidth;
-
-            const height =
-                container.clientHeight;
-
-
-            if (
-                width === 0 ||
-                height === 0
-            ) {
-
-                return;
-
-            }
-
-
             camera.aspect =
-                width / height;
+                window.innerWidth /
+                window.innerHeight;
 
 
             camera.updateProjectionMatrix();
 
 
             renderer.setSize(
-                width,
-                height
+                window.innerWidth,
+                window.innerHeight
             );
 
 
@@ -975,118 +687,129 @@ if (container && typeof THREE !== "undefined") {
         }
     );
 
-
-    /* =================================================
-       CORE DATA
-    ================================================= */
-
-    const xValue =
-        document.getElementById(
-            "xValue"
-        );
-
-    const yValue =
-        document.getElementById(
-            "yValue"
-        );
-
-    const zValue =
-        document.getElementById(
-            "zValue"
-        );
-
-
-    setInterval(
-        () => {
-
-            xValue.textContent =
-                String(
-                    Math.floor(
-                        (gear.rotation.x * 100)
-                    )
-                ).padStart(
-                    3,
-                    "0"
-                );
-
-
-            yValue.textContent =
-                String(
-                    Math.floor(
-                        (gear.rotation.y * 100)
-                    )
-                ).padStart(
-                    3,
-                    "0"
-                );
-
-
-            zValue.textContent =
-                String(
-                    Math.floor(
-                        (gear.rotation.z * 100)
-                    )
-                ).padStart(
-                    3,
-                    "0"
-                );
-
-        },
-        100
-    );
-
 }
 
 
-/* =====================================================
-   INTERSECTION OBSERVER
-===================================================== */
+/* =========================================================
+   PROJECT / CARD CLICK BLINK
+   ========================================================= */
 
-const observer =
-    new IntersectionObserver(
-        (entries) => {
-
-            entries.forEach(
-                (entry) => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.style.opacity =
-                            "1";
-
-                        entry.target.style.transform =
-                            "translateY(0)";
-
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold: 0.12
-        }
+const cards =
+    document.querySelectorAll(
+        ".project-card, .skill-card, .info-card"
     );
 
 
-document.querySelectorAll(
-    ".skill-card, .project-card, .contact-card, .education-card"
-).forEach(
-    (element) => {
+cards.forEach((card) => {
 
-        element.style.opacity = "0";
+    card.addEventListener(
+        "click",
+        () => {
 
-        element.style.transform =
-            "translateY(25px)";
+            card.classList.remove(
+                "card-click"
+            );
 
-        element.style.transition =
-            "opacity 0.6s ease, transform 0.6s ease";
+            void card.offsetWidth;
 
-        observer.observe(
-            element
+            card.classList.add(
+                "card-click"
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   ACTIVE NAV ON SCROLL
+   ========================================================= */
+
+const sections =
+    document.querySelectorAll(
+        "section[id]"
+    );
+
+const navLinks =
+    document.querySelectorAll(
+        "nav a"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        let current = "";
+
+        sections.forEach(
+            (section) => {
+
+                const sectionTop =
+                    section.offsetTop - 250;
+
+                if (
+                    window.scrollY >=
+                    sectionTop
+                ) {
+
+                    current =
+                        section.getAttribute(
+                            "id"
+                        );
+
+                }
+
+            }
+        );
+
+
+        navLinks.forEach(
+            (link) => {
+
+                link.style.color =
+                    "rgba(255,255,255,0.65)";
+
+
+                if (
+                    link.getAttribute(
+                        "href"
+                    ) === "#" + current
+                ) {
+
+                    link.style.color =
+                        "#ffffff";
+
+                }
+
+            }
         );
 
     }
 );
+
+
+/* =========================================================
+   IMAGE LOAD EFFECT
+   ========================================================= */
+
+const profileImage =
+    document.querySelector(
+        ".profile-card img"
+    );
+
+
+if (profileImage) {
+
+    profileImage.addEventListener(
+        "load",
+        () => {
+
+            profileImage.style.opacity =
+                "1";
+
+        }
+    );
+
+}
