@@ -29,9 +29,9 @@ img {
     --red: #ff1734;
     --red-dark: #9d0618;
     --white: #ffffff;
-    --gray: #9b9b9b;
-    --dark: #080808;
-    --card: #0d0d0d;
+    --gray: #999999;
+    --dark: #050505;
+    --card: #0c0c0c;
     --line: rgba(255,255,255,0.10);
 }
 
@@ -45,7 +45,7 @@ img {
     width: 100%;
     z-index: 1000;
 
-    background: rgba(5,5,5,0.78);
+    background: rgba(5,5,5,0.80);
     backdrop-filter: blur(18px);
 
     border-bottom: 1px solid var(--line);
@@ -69,9 +69,9 @@ img {
     gap: 12px;
 }
 
-.brand span {
-    width: 42px;
-    height: 42px;
+.brand > span {
+    width: 43px;
+    height: 43px;
 
     display: flex;
     align-items: center;
@@ -80,50 +80,61 @@ img {
     background: #ffffff;
     color: #050505;
 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 1000;
 }
 
+.brand div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.brand strong {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
 .brand small {
-    color: #888;
-    font-size: 8px;
+    color: #555;
+    font-size: 7px;
     font-weight: 900;
     letter-spacing: 2px;
 }
 
 nav {
     display: flex;
-    gap: 34px;
+    gap: 32px;
 }
 
 nav a {
-    color: #a7a7a7;
-    font-size: 10px;
+    color: #888;
+    font-size: 9px;
     font-weight: 900;
     letter-spacing: 1.5px;
 
-    transition: 0.3s;
+    transition: .3s;
 }
 
 nav a:hover {
-    color: #ffffff;
+    color: #fff;
 }
 
 .nav-button {
     padding: 12px 18px;
 
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,.25);
 
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 900;
     letter-spacing: 1px;
 
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .nav-button:hover {
-    background: #ffffff;
-    color: #000000;
+    background: #fff;
+    color: #000;
 }
 
 
@@ -131,14 +142,15 @@ nav a:hover {
 
 .hero {
     min-height: 100vh;
+
     position: relative;
     overflow: hidden;
 
     background:
         radial-gradient(
             circle at 75% 50%,
-            rgba(255,23,52,0.12),
-            transparent 30%
+            rgba(255,23,52,.13),
+            transparent 32%
         ),
         #050505;
 }
@@ -176,7 +188,7 @@ nav a:hover {
     align-items: center;
     gap: 10px;
 
-    color: #9d9d9d;
+    color: #888;
 
     font-size: 9px;
     font-weight: 900;
@@ -196,7 +208,6 @@ nav a:hover {
 }
 
 @keyframes pulse {
-
     0%,100% {
         opacity: 1;
         transform: scale(1);
@@ -211,9 +222,9 @@ nav a:hover {
 .hero h1 {
     margin-top: 25px;
 
-    font-size: clamp(65px, 9vw, 135px);
+    font-size: clamp(70px, 9vw, 135px);
 
-    line-height: .78;
+    line-height: .76;
     letter-spacing: -8px;
 
     font-weight: 1000;
@@ -221,34 +232,50 @@ nav a:hover {
 
 .hero h1 span {
     display: block;
+
     color: transparent;
 
-    -webkit-text-stroke: 1px rgba(255,255,255,0.8);
+    -webkit-text-stroke: 1px rgba(255,255,255,.85);
 
-    transition: 0.5s;
+    transition: .5s;
 }
 
 .hero h1 span:hover {
-    color: #ffffff;
+    color: #fff;
+}
+
+.brand-tagline {
+    margin-top: 25px;
+
+    color: #666;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.brand-tagline span {
+    color: var(--red);
+    margin: 0 7px;
 }
 
 .hero-line {
     width: 80px;
     height: 3px;
 
-    margin-top: 35px;
+    margin-top: 28px;
 
     background: var(--red);
 
-    box-shadow: 0 0 18px rgba(255,23,52,0.6);
+    box-shadow: 0 0 18px rgba(255,23,52,.6);
 }
 
 .hero-description {
-    max-width: 560px;
+    max-width: 550px;
 
     margin-top: 25px;
 
-    color: #9d9d9d;
+    color: #929292;
 
     font-size: 14px;
     line-height: 1.9;
@@ -260,21 +287,21 @@ nav a:hover {
 
     gap: 7px;
 
-    margin-top: 25px;
+    margin-top: 24px;
 }
 
 .hero-tags span {
     padding: 8px 10px;
 
-    border: 1px solid rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,.09);
 
-    color: #8e8e8e;
+    color: #777;
+
+    background: rgba(255,255,255,.02);
 
     font-size: 8px;
     font-weight: 900;
     letter-spacing: 1px;
-
-    background: rgba(255,255,255,0.02);
 }
 
 .hero-buttons {
@@ -295,31 +322,43 @@ nav a:hover {
     font-weight: 1000;
     letter-spacing: 1px;
 
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .button.primary {
-    background: #ffffff;
-    color: #000000;
+    background: #fff;
+    color: #000;
 }
 
 .button.primary:hover {
     background: var(--red);
-    color: #ffffff;
+    color: #fff;
 
     transform: translateY(-4px);
 }
 
 .button.secondary {
-    border: 1px solid rgba(255,255,255,0.25);
-    color: #ffffff;
+    border: 1px solid rgba(255,255,255,.25);
 }
 
 .button.secondary:hover {
-    border-color: var(--red);
     color: var(--red);
+    border-color: var(--red);
 
     transform: translateY(-4px);
+}
+
+.hero-credit {
+    margin-top: 30px;
+
+    color: #444;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.hero-credit strong {
+    color: #777;
 }
 
 
@@ -333,8 +372,6 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    perspective: 1000px;
 }
 
 #three-model {
@@ -357,24 +394,22 @@ nav a:hover {
     width: 520px;
     height: 520px;
 
-    border: 1px solid rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,.06);
 
     transform: rotate(45deg);
 
     background:
         linear-gradient(
-            rgba(255,255,255,0.03) 1px,
+            rgba(255,255,255,.025) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(255,255,255,0.03) 1px,
+            rgba(255,255,255,.025) 1px,
             transparent 1px
         );
 
     background-size: 30px 30px;
-
-    mask-image: radial-gradient(circle, black, transparent 70%);
 }
 
 .model-circle {
@@ -382,7 +417,7 @@ nav a:hover {
 
     border-radius: 50%;
 
-    border: 1px solid rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,.12);
 
     z-index: 3;
 }
@@ -400,7 +435,7 @@ nav a:hover {
     width: 560px;
     height: 560px;
 
-    border-left-color: rgba(255,23,52,0.5);
+    border-left-color: rgba(255,23,52,.5);
 
     border-style: dashed;
 
@@ -408,7 +443,6 @@ nav a:hover {
 }
 
 @keyframes rotateRing {
-
     from {
         transform: rotate(0);
     }
@@ -416,11 +450,9 @@ nav a:hover {
     to {
         transform: rotate(360deg);
     }
-
 }
 
 @keyframes rotateRingReverse {
-
     from {
         transform: rotate(360deg);
     }
@@ -428,7 +460,6 @@ nav a:hover {
     to {
         transform: rotate(0);
     }
-
 }
 
 .model-cross {
@@ -480,7 +511,7 @@ nav a:hover {
 
     z-index: 10;
 
-    color: #777;
+    color: #666;
 
     font-size: 8px;
     font-weight: 900;
@@ -521,7 +552,7 @@ nav a:hover {
     display: flex;
     justify-content: space-between;
 
-    color: #555;
+    color: #444;
 
     font-size: 8px;
     font-weight: 900;
@@ -534,7 +565,7 @@ nav a:hover {
 }
 
 .hero-number {
-    color: #666;
+    color: #555;
 }
 
 
@@ -543,13 +574,13 @@ nav a:hover {
 .career-flow {
     min-height: 90px;
 
-    padding: 0 50px;
+    padding: 0 40px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    gap: 35px;
+    gap: 32px;
 
     background: #090909;
 
@@ -567,8 +598,6 @@ nav a:hover {
     font-size: 9px;
     font-weight: 900;
     letter-spacing: 1px;
-
-    transition: 0.3s;
 }
 
 .flow-item span {
@@ -576,7 +605,7 @@ nav a:hover {
 }
 
 .flow-item.active {
-    color: #ffffff;
+    color: #fff;
 }
 
 .flow-item.active span {
@@ -588,7 +617,7 @@ nav a:hover {
 }
 
 
-/* ================= SECTIONS ================= */
+/* ================= GENERAL ================= */
 
 .section {
     max-width: 1400px;
@@ -635,7 +664,7 @@ nav a:hover {
 .section-heading h2 span {
     display: block;
 
-    color: #ffffff;
+    color: #fff;
 
     font-weight: 1000;
 }
@@ -664,9 +693,9 @@ nav a:hover {
 
     margin-bottom: 35px;
 
-    color: #ffffff;
+    color: #fff;
 
-    font-size: 27px;
+    font-size: 28px;
     line-height: 1.4;
 
     font-weight: 700;
@@ -685,6 +714,29 @@ nav a:hover {
 
     font-size: 14px;
     line-height: 1.9;
+}
+
+.creator-line {
+    margin-top: 35px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.creator-line span {
+    color: #444;
+
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.creator-line strong {
+    color: #fff;
+
+    font-size: 11px;
+    letter-spacing: 1px;
 }
 
 .about-stats {
@@ -708,11 +760,11 @@ nav a:hover {
 
     border: 1px solid var(--line);
 
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .stat-card:hover {
-    border-color: rgba(255,23,52,0.5);
+    border-color: rgba(255,23,52,.5);
 
     transform: translateY(-6px);
 }
@@ -757,11 +809,11 @@ nav a:hover {
 
     background: #0c0c0c;
 
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,.08);
 
     overflow: hidden;
 
-    transition: 0.35s;
+    transition: .35s;
 }
 
 .skill-card::before {
@@ -783,13 +835,13 @@ nav a:hover {
 
     filter: blur(50px);
 
-    transition: 0.4s;
+    transition: .4s;
 }
 
 .skill-card:hover {
     transform: translateY(-8px);
 
-    border-color: rgba(255,23,52,0.5);
+    border-color: rgba(255,23,52,.5);
 }
 
 .skill-card:hover::before {
@@ -806,7 +858,7 @@ nav a:hover {
 .skill-icon {
     margin-top: 45px;
 
-    color: #ffffff;
+    color: #fff;
 
     font-size: 30px;
 }
@@ -840,7 +892,7 @@ nav a:hover {
 
     padding-top: 15px;
 
-    border-top: 1px solid rgba(255,255,255,0.07);
+    border-top: 1px solid rgba(255,255,255,.07);
 
     color: #555;
 
@@ -887,7 +939,7 @@ nav a:hover {
 
     object-fit: cover;
 
-    transition: 0.6s;
+    transition: .6s;
 }
 
 .project-feature:hover .project-image img {
@@ -912,7 +964,7 @@ nav a:hover {
     left: 25px;
     bottom: 25px;
 
-    color: #ffffff;
+    color: #fff;
 
     font-size: 9px;
     font-weight: 900;
@@ -950,7 +1002,7 @@ nav a:hover {
 .project-information h3 span {
     display: block;
 
-    color: #ffffff;
+    color: #fff;
 
     font-weight: 1000;
 }
@@ -981,7 +1033,7 @@ nav a:hover {
 
     padding-bottom: 12px;
 
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,.07);
 }
 
 .project-details span {
@@ -1013,14 +1065,14 @@ nav a:hover {
 
     background: #111;
 
-    border: 1px solid rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,.07);
 
     font-size: 7px;
     font-weight: 900;
 }
 
 
-/* ================= MINI PROJECTS ================= */
+/* ================= UPCOMING ================= */
 
 .future-projects {
     margin-top: 10px;
@@ -1047,7 +1099,7 @@ nav a:hover {
 
     border: 1px solid var(--line);
 
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .mini-project:hover {
@@ -1145,7 +1197,7 @@ nav a:hover {
 .career-content h2 span {
     display: block;
 
-    color: #ffffff;
+    color: #fff;
 
     font-weight: 1000;
 }
@@ -1192,7 +1244,7 @@ nav a:hover {
 
     border: 1px solid var(--line);
 
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .contact-card:hover {
@@ -1212,7 +1264,7 @@ nav a:hover {
 }
 
 .contact-card strong {
-    color: #ffffff;
+    color: #fff;
 
     font-size: 12px;
 }
@@ -1224,7 +1276,7 @@ nav a:hover {
 }
 
 
-/* ================= CLICK EFFECT ================= */
+/* ================= CLICK BLINK ================= */
 
 .clickable.clicked {
     animation: clickBlink .38s ease;
@@ -1239,7 +1291,10 @@ nav a:hover {
     35% {
         filter:
             brightness(2)
-            drop-shadow(0 0 15px rgba(255,23,52,.8));
+            drop-shadow(
+                0 0 15px
+                rgba(255,23,52,.8)
+            );
 
         transform: scale(.98);
     }
@@ -1247,7 +1302,6 @@ nav a:hover {
     100% {
         filter: brightness(1);
     }
-
 }
 
 
@@ -1264,8 +1318,8 @@ footer {
 }
 
 .footer-logo {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
 
     margin: auto;
 
@@ -1273,8 +1327,8 @@ footer {
     align-items: center;
     justify-content: center;
 
-    background: #ffffff;
-    color: #000000;
+    background: #fff;
+    color: #000;
 
     font-size: 13px;
     font-weight: 1000;
@@ -1283,9 +1337,9 @@ footer {
 footer h3 {
     margin-top: 18px;
 
-    font-size: 13px;
+    font-size: 14px;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 footer p {
@@ -1365,7 +1419,6 @@ footer small {
     .skills-grid {
         grid-template-columns: 1fr 1fr;
     }
-
 }
 
 
@@ -1461,13 +1514,13 @@ footer small {
 
     .career-section {
         min-height: 550px;
+
         padding: 30px 20px;
     }
 
     .career-content h2 {
         font-size: 53px;
     }
-
 }
 
 
@@ -1485,4 +1538,7 @@ footer small {
         font-size: 7px;
     }
 
+    .brand strong {
+        font-size: 10px;
+    }
 }
