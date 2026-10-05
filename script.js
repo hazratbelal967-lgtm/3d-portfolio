@@ -1,286 +1,169 @@
-/* =========================================================
-   HAZRAT BELAL — INTERACTIVE 3D PORTFOLIO
-   ========================================================= */
+/* =====================================================
+   HAZRAT BELAL - 3D ENGINEERING PORTFOLIO
+   ===================================================== */
 
 
-/* =========================================================
-   CUSTOM CURSOR
-   ========================================================= */
+/* ================= THREE.JS ================= */
 
-const cursor = document.querySelector(".cursor");
-const cursorRing = document.querySelector(".cursor-ring");
-
-document.addEventListener("mousemove", (e) => {
-
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-    cursorRing.style.left = e.clientX + "px";
-    cursorRing.style.top = e.clientY + "px";
-
-});
-
-
-const interactiveElements =
-    document.querySelectorAll(
-        "a, button, .skill-card, .project-card, .info-card"
-    );
-
-
-interactiveElements.forEach((element) => {
-
-    element.addEventListener("mouseenter", () => {
-
-        cursorRing.classList.add("active");
-
-    });
-
-    element.addEventListener("mouseleave", () => {
-
-        cursorRing.classList.remove("active");
-
-    });
-
-});
-
-
-/* =========================================================
-   CLICK FLASH EFFECT
-   ========================================================= */
-
-const clickFlash =
-    document.querySelector(".click-flash");
-
-
-document.addEventListener("click", (e) => {
-
-    clickFlash.style.left =
-        e.clientX + "px";
-
-    clickFlash.style.top =
-        e.clientY + "px";
-
-    clickFlash.classList.remove("active");
-
-    void clickFlash.offsetWidth;
-
-    clickFlash.classList.add("active");
-
-});
-
-
-/* =========================================================
-   THREE.JS BACKGROUND
-   ========================================================= */
-
-const container =
-    document.getElementById("three-background");
-
+const container = document.getElementById("three-model");
 
 if (container && typeof THREE !== "undefined") {
 
+    const scene = new THREE.Scene();
 
-    const scene =
-        new THREE.Scene();
-
-
-    const camera =
-        new THREE.PerspectiveCamera(
-            50,
-            window.innerWidth /
-            window.innerHeight,
-            0.1,
-            1000
-        );
-
-
-    camera.position.z = 8;
-
-
-    const renderer =
-        new THREE.WebGLRenderer({
-            antialias: true,
-            alpha: true
-        });
-
-
-    renderer.setPixelRatio(
-        Math.min(
-            window.devicePixelRatio,
-            2
-        )
+    const camera = new THREE.PerspectiveCamera(
+        45,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
     );
 
+    camera.position.set(0, 0, 7);
+
+
+    const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true
+    });
 
     renderer.setSize(
-        window.innerWidth,
-        window.innerHeight
+        container.clientWidth,
+        container.clientHeight
     );
 
-
-    container.appendChild(
-        renderer.domElement
+    renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, 2)
     );
 
+    container.appendChild(renderer.domElement);
 
-    /* =====================================================
-       LIGHTS
-       ===================================================== */
 
-    const ambient =
+    /* ================= LIGHTS ================= */
+
+    const ambientLight =
         new THREE.AmbientLight(
             0xffffff,
-            0.7
+            1.4
         );
 
-    scene.add(ambient);
+    scene.add(ambientLight);
+
+
+    const whiteLight =
+        new THREE.DirectionalLight(
+            0xffffff,
+            3
+        );
+
+    whiteLight.position.set(
+        5,
+        5,
+        8
+    );
+
+    scene.add(whiteLight);
 
 
     const redLight =
         new THREE.PointLight(
-            0xff1738,
-            5,
-            20
+            0xff1734,
+            7,
+            15
         );
 
     redLight.position.set(
-        4,
+        -4,
         2,
-        5
+        4
     );
 
     scene.add(redLight);
 
 
-    const purpleLight =
-        new THREE.PointLight(
-            0x8b36ff,
-            4,
-            20
-        );
-
-    purpleLight.position.set(
-        -5,
-        -2,
-        4
-    );
-
-    scene.add(purpleLight);
-
-
-    /* =====================================================
-       GEAR
-       ===================================================== */
+    /* ================= GEAR ================= */
 
     const gearShape =
         new THREE.Shape();
 
-
     const teeth = 18;
 
     const outerRadius = 2.15;
-
     const innerRadius = 1.65;
 
     const step =
-        Math.PI * 2 / teeth;
+        (Math.PI * 2) / teeth;
 
 
-    for (
-        let i = 0;
-        i < teeth;
-        i++
-    ) {
+    for (let i = 0; i < teeth; i++) {
 
-        const angle =
+        const base =
             i * step;
-
 
         const points = [
 
             {
                 r: innerRadius,
-                a: angle
+                a: base
             },
 
             {
                 r: outerRadius,
-                a: angle + step * 0.20
+                a: base + step * .18
             },
 
             {
                 r: outerRadius,
-                a: angle + step * 0.42
+                a: base + step * .42
             },
 
             {
                 r: innerRadius,
-                a: angle + step * 0.58
+                a: base + step * .58
             }
 
         ];
 
 
-        points.forEach(
-            (point, index) => {
+        points.forEach((point, index) => {
 
-                const x =
-                    Math.cos(point.a) *
-                    point.r;
+            const x =
+                Math.cos(point.a) *
+                point.r;
 
-                const y =
-                    Math.sin(point.a) *
-                    point.r;
+            const y =
+                Math.sin(point.a) *
+                point.r;
 
 
-                if (
-                    i === 0 &&
-                    index === 0
-                ) {
+            if (i === 0 && index === 0) {
 
-                    gearShape.moveTo(
-                        x,
-                        y
-                    );
+                gearShape.moveTo(x, y);
 
-                } else {
+            } else {
 
-                    gearShape.lineTo(
-                        x,
-                        y
-                    );
-
-                }
+                gearShape.lineTo(x, y);
 
             }
-        );
+
+        });
 
     }
 
 
-    gearShape.closePath();
-
-
-    /* center hole */
+    /* ================= CENTER HOLE ================= */
 
     const hole =
         new THREE.Path();
 
+    const holeRadius = .72;
 
-    const holeRadius = 0.65;
 
-
-    for (
-        let i = 0;
-        i <= 64;
-        i++
-    ) {
+    for (let i = 0; i <= 64; i++) {
 
         const angle =
             (i / 64) *
             Math.PI *
             2;
-
 
         const x =
             Math.cos(angle) *
@@ -293,17 +176,11 @@ if (container && typeof THREE !== "undefined") {
 
         if (i === 0) {
 
-            hole.moveTo(
-                x,
-                y
-            );
+            hole.moveTo(x, y);
 
         } else {
 
-            hole.lineTo(
-                x,
-                y
-            );
+            hole.lineTo(x, y);
 
         }
 
@@ -313,19 +190,21 @@ if (container && typeof THREE !== "undefined") {
     gearShape.holes.push(hole);
 
 
+    /* ================= GEAR GEOMETRY ================= */
+
     const gearGeometry =
         new THREE.ExtrudeGeometry(
             gearShape,
             {
-                depth: 0.55,
+                depth: .55,
 
                 bevelEnabled: true,
 
-                bevelSegments: 3,
+                bevelSegments: 4,
 
-                bevelSize: 0.07,
+                bevelSize: .08,
 
-                bevelThickness: 0.06
+                bevelThickness: .08
             }
         );
 
@@ -336,12 +215,11 @@ if (container && typeof THREE !== "undefined") {
     const gearMaterial =
         new THREE.MeshStandardMaterial({
 
-            color: 0xffffff,
+            color: 0xd9d9d9,
 
-            metalness: 0.9,
+            metalness: .9,
 
-            roughness: 0.22
-
+            roughness: .22
         });
 
 
@@ -353,67 +231,143 @@ if (container && typeof THREE !== "undefined") {
 
 
     gear.scale.set(
-        1.35,
-        1.35,
-        1.35
+        1.15,
+        1.15,
+        1.15
     );
 
 
-    gear.position.set(
-        2.7,
-        0.2,
-        -1
-    );
+    gear.rotation.x = .35;
 
-
-    gear.rotation.x =
-        0.55;
-
-    gear.rotation.y =
-        0.35;
+    gear.rotation.y = .2;
 
 
     scene.add(gear);
 
 
-    /* =====================================================
-       SECOND GEAR
-       ===================================================== */
+    /* ================= INNER GEAR ================= */
 
-    const gear2 =
-        new THREE.Mesh(
-            gearGeometry,
-            gearMaterial
+    const innerGear =
+        gear.clone();
+
+    innerGear.scale.set(
+        .48,
+        .48,
+        .48
+    );
+
+    innerGear.material =
+        new THREE.MeshStandardMaterial({
+
+            color: 0xff1734,
+
+            metalness: .85,
+
+            roughness: .25
+        });
+
+
+    innerGear.position.z =
+        .35;
+
+
+    scene.add(innerGear);
+
+
+    /* ================= CENTER RING ================= */
+
+    const ringGeometry =
+        new THREE.TorusGeometry(
+            .73,
+            .055,
+            12,
+            64
         );
 
 
-    gear2.scale.set(
-        0.55,
-        0.55,
-        0.55
-    );
+    const ringMaterial =
+        new THREE.MeshStandardMaterial({
+
+            color: 0xff1734,
+
+            metalness: .9,
+
+            roughness: .2
+        });
 
 
-    gear2.position.set(
-        4.1,
-        -1.3,
-        -1.5
-    );
+    const centerRing =
+        new THREE.Mesh(
+            ringGeometry,
+            ringMaterial
+        );
 
 
-    gear2.rotation.x =
-        -0.4;
+    centerRing.position.z =
+        .42;
 
 
-    scene.add(gear2);
+    scene.add(centerRing);
 
 
-    /* =====================================================
-       PARTICLES
-       ===================================================== */
+    /* ================= FLOATING RINGS ================= */
 
-    const particleCount = 900;
+    const ring1 =
+        new THREE.Mesh(
 
+            new THREE.TorusGeometry(
+                2.8,
+                .015,
+                8,
+                100
+            ),
+
+            new THREE.MeshBasicMaterial({
+                color: 0xffffff,
+                transparent: true,
+                opacity: .25
+            })
+
+        );
+
+
+    ring1.rotation.x =
+        Math.PI / 2.4;
+
+    scene.add(ring1);
+
+
+    const ring2 =
+        new THREE.Mesh(
+
+            new THREE.TorusGeometry(
+                3.2,
+                .012,
+                8,
+                100
+            ),
+
+            new THREE.MeshBasicMaterial({
+                color: 0xff1734,
+                transparent: true,
+                opacity: .35
+            })
+
+        );
+
+
+    ring2.rotation.y =
+        Math.PI / 3;
+
+    scene.add(ring2);
+
+
+    /* ================= PARTICLES ================= */
+
+    const particleCount = 350;
+
+    const particleGeometry =
+        new THREE.BufferGeometry();
 
     const positions =
         new Float32Array(
@@ -421,29 +375,33 @@ if (container && typeof THREE !== "undefined") {
         );
 
 
-    for (
-        let i = 0;
-        i < particleCount;
-        i++
-    ) {
+    for (let i = 0; i < particleCount; i++) {
+
+        const radius =
+            3.2 + Math.random() * 2.5;
+
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+        const height =
+            (Math.random() - .5) *
+            5;
+
 
         positions[i * 3] =
-            (Math.random() - 0.5) *
-            16;
+            Math.cos(angle) *
+            radius;
 
         positions[i * 3 + 1] =
-            (Math.random() - 0.5) *
-            10;
+            height;
 
         positions[i * 3 + 2] =
-            (Math.random() - 0.5) *
-            8;
+            Math.sin(angle) *
+            radius;
 
     }
-
-
-    const particleGeometry =
-        new THREE.BufferGeometry();
 
 
     particleGeometry.setAttribute(
@@ -458,14 +416,13 @@ if (container && typeof THREE !== "undefined") {
     const particleMaterial =
         new THREE.PointsMaterial({
 
-            color: 0xffffff,
+            color: 0xff1734,
 
-            size: 0.018,
+            size: .025,
 
             transparent: true,
 
-            opacity: 0.55
-
+            opacity: .7
         });
 
 
@@ -479,58 +436,10 @@ if (container && typeof THREE !== "undefined") {
     scene.add(particles);
 
 
-    /* =====================================================
-       WIREFRAME SPHERE
-       ===================================================== */
-
-    const sphereGeometry =
-        new THREE.IcosahedronGeometry(
-            2.8,
-            2
-        );
-
-
-    const sphereMaterial =
-        new THREE.MeshBasicMaterial({
-
-            color: 0xff1738,
-
-            wireframe: true,
-
-            transparent: true,
-
-            opacity: 0.055
-
-        });
-
-
-    const sphere =
-        new THREE.Mesh(
-            sphereGeometry,
-            sphereMaterial
-        );
-
-
-    sphere.position.set(
-        -3.5,
-        1.5,
-        -2
-    );
-
-
-    scene.add(sphere);
-
-
-    /* =====================================================
-       MOUSE MOVEMENT
-       ===================================================== */
+    /* ================= MOUSE MOVEMENT ================= */
 
     let mouseX = 0;
     let mouseY = 0;
-
-    let targetX = 0;
-    let targetY = 0;
-
 
     document.addEventListener(
         "mousemove",
@@ -538,27 +447,19 @@ if (container && typeof THREE !== "undefined") {
 
             mouseX =
                 (event.clientX /
-                    window.innerWidth -
-                    0.5) *
-                2;
+                    window.innerWidth) *
+                2 - 1;
 
             mouseY =
                 (event.clientY /
-                    window.innerHeight -
-                    0.5) *
-                2;
+                    window.innerHeight) *
+                2 - 1;
 
         }
     );
 
 
-    /* =====================================================
-       ANIMATION
-       ===================================================== */
-
-    const clock =
-        new THREE.Clock();
-
+    /* ================= ANIMATION ================= */
 
     function animate() {
 
@@ -567,81 +468,33 @@ if (container && typeof THREE !== "undefined") {
         );
 
 
-        const time =
-            clock.getElapsedTime();
+        gear.rotation.z += .004;
+
+        innerGear.rotation.z -= .009;
+
+        centerRing.rotation.z -= .015;
+
+        ring1.rotation.z += .002;
+
+        ring1.rotation.x += .0005;
+
+        ring2.rotation.z -= .003;
+
+        particles.rotation.y += .0005;
 
 
-        targetX +=
-            (mouseX - targetX) *
-            0.025;
-
-        targetY +=
-            (mouseY - targetY) *
-            0.025;
-
-
-        /* main gear */
-
-        gear.rotation.z +=
-            0.003;
+        gear.rotation.x +=
+            (
+                mouseY * .25 -
+                gear.rotation.x
+            ) * .015;
 
 
         gear.rotation.y +=
-            0.001;
-
-
-        gear.position.y =
-            0.2 +
-            Math.sin(time * 0.7) *
-            0.08;
-
-
-        /* second gear */
-
-        gear2.rotation.z -=
-            0.006;
-
-
-        /* particles */
-
-        particles.rotation.y =
-            time * 0.008;
-
-
-        particles.rotation.x =
-            targetY * 0.04;
-
-
-        /* sphere */
-
-        sphere.rotation.x +=
-            0.0008;
-
-        sphere.rotation.y +=
-            0.001;
-
-
-        /* camera movement */
-
-        camera.position.x +=
             (
-                targetX * 0.25 -
-                camera.position.x
-            ) * 0.02;
-
-
-        camera.position.y +=
-            (
-                -targetY * 0.18 -
-                camera.position.y
-            ) * 0.02;
-
-
-        camera.lookAt(
-            0,
-            0,
-            0
-        );
+                mouseX * .25 -
+                gear.rotation.y
+            ) * .015;
 
 
         renderer.render(
@@ -655,25 +508,33 @@ if (container && typeof THREE !== "undefined") {
     animate();
 
 
-    /* =====================================================
-       RESIZE
-       ===================================================== */
+    /* ================= RESIZE ================= */
 
     window.addEventListener(
         "resize",
         () => {
 
-            camera.aspect =
-                window.innerWidth /
-                window.innerHeight;
+            const width =
+                container.clientWidth;
 
+            const height =
+                container.clientHeight;
+
+
+            if (!width || !height) {
+                return;
+            }
+
+
+            camera.aspect =
+                width / height;
 
             camera.updateProjectionMatrix();
 
 
             renderer.setSize(
-                window.innerWidth,
-                window.innerHeight
+                width,
+                height
             );
 
 
@@ -690,41 +551,57 @@ if (container && typeof THREE !== "undefined") {
 }
 
 
-/* =========================================================
-   PROJECT / CARD CLICK BLINK
-   ========================================================= */
+/* =====================================================
+   CLICK BLINK EFFECT
+   ===================================================== */
 
-const cards =
+const clickableElements =
     document.querySelectorAll(
-        ".project-card, .skill-card, .info-card"
+        ".clickable"
     );
 
 
-cards.forEach((card) => {
+clickableElements.forEach(
+    (element) => {
 
-    card.addEventListener(
-        "click",
-        () => {
+        element.addEventListener(
+            "click",
+            () => {
 
-            card.classList.remove(
-                "card-click"
-            );
-
-            void card.offsetWidth;
-
-            card.classList.add(
-                "card-click"
-            );
-
-        }
-    );
-
-});
+                element.classList.remove(
+                    "clicked"
+                );
 
 
-/* =========================================================
-   ACTIVE NAV ON SCROLL
-   ========================================================= */
+                void element.offsetWidth;
+
+
+                element.classList.add(
+                    "clicked"
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        element.classList.remove(
+                            "clicked"
+                        );
+
+                    },
+                    450
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   NAVBAR ACTIVE EFFECT
+   ===================================================== */
 
 const sections =
     document.querySelectorAll(
@@ -747,7 +624,7 @@ window.addEventListener(
             (section) => {
 
                 const sectionTop =
-                    section.offsetTop - 250;
+                    section.offsetTop - 180;
 
                 if (
                     window.scrollY >=
@@ -768,9 +645,7 @@ window.addEventListener(
         navLinks.forEach(
             (link) => {
 
-                link.style.color =
-                    "rgba(255,255,255,0.65)";
-
+                link.style.color = "";
 
                 if (
                     link.getAttribute(
@@ -790,26 +665,19 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   IMAGE LOAD EFFECT
-   ========================================================= */
+/* =====================================================
+   HERO TEXT ENTRY ANIMATION
+   ===================================================== */
 
-const profileImage =
-    document.querySelector(
-        ".profile-card img"
-    );
+window.addEventListener(
+    "load",
+    () => {
 
+        document
+            .querySelector(".hero-content")
+            ?.classList.add(
+                "loaded"
+            );
 
-if (profileImage) {
-
-    profileImage.addEventListener(
-        "load",
-        () => {
-
-            profileImage.style.opacity =
-                "1";
-
-        }
-    );
-
-}
+    }
+);
