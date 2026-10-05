@@ -1,41 +1,68 @@
 /* =====================================================
-   HAZRAT BELAL - 3D ENGINEERING PORTFOLIO
+   MECHFORGE
+   3D MECHANICAL ENGINEERING PORTFOLIO
+   Built by Hazrat Belal
    ===================================================== */
 
 
-/* ================= THREE.JS ================= */
+/* =====================================================
+   THREE.JS 3D ENGINE
+   ===================================================== */
 
-const container = document.getElementById("three-model");
+const container =
+    document.getElementById("three-model");
 
-if (container && typeof THREE !== "undefined") {
 
-    const scene = new THREE.Scene();
+if (
+    container &&
+    typeof THREE !== "undefined"
+) {
 
-    const camera = new THREE.PerspectiveCamera(
-        45,
-        container.clientWidth / container.clientHeight,
-        0.1,
-        1000
+    const scene =
+        new THREE.Scene();
+
+
+    const camera =
+        new THREE.PerspectiveCamera(
+            45,
+            container.clientWidth /
+            container.clientHeight,
+            0.1,
+            1000
+        );
+
+
+    camera.position.set(
+        0,
+        0,
+        7
     );
 
-    camera.position.set(0, 0, 7);
 
+    const renderer =
+        new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true
+        });
 
-    const renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true
-    });
 
     renderer.setSize(
         container.clientWidth,
         container.clientHeight
     );
 
+
     renderer.setPixelRatio(
-        Math.min(window.devicePixelRatio, 2)
+        Math.min(
+            window.devicePixelRatio,
+            2
+        )
     );
 
-    container.appendChild(renderer.domElement);
+
+    container.appendChild(
+        renderer.domElement
+    );
 
 
     /* ================= LIGHTS ================= */
@@ -46,7 +73,10 @@ if (container && typeof THREE !== "undefined") {
             1.4
         );
 
-    scene.add(ambientLight);
+
+    scene.add(
+        ambientLight
+    );
 
 
     const whiteLight =
@@ -55,13 +85,17 @@ if (container && typeof THREE !== "undefined") {
             3
         );
 
+
     whiteLight.position.set(
         5,
         5,
         8
     );
 
-    scene.add(whiteLight);
+
+    scene.add(
+        whiteLight
+    );
 
 
     const redLight =
@@ -71,148 +105,199 @@ if (container && typeof THREE !== "undefined") {
             15
         );
 
+
     redLight.position.set(
         -4,
         2,
         4
     );
 
-    scene.add(redLight);
+
+    scene.add(
+        redLight
+    );
 
 
-    /* ================= GEAR ================= */
+    /* ================= GEAR SHAPE ================= */
 
-    const gearShape =
-        new THREE.Shape();
+    function createGear(
+        teeth,
+        outerRadius,
+        innerRadius,
+        holeRadius
+    ) {
 
-    const teeth = 18;
-
-    const outerRadius = 2.15;
-    const innerRadius = 1.65;
-
-    const step =
-        (Math.PI * 2) / teeth;
-
-
-    for (let i = 0; i < teeth; i++) {
-
-        const base =
-            i * step;
-
-        const points = [
-
-            {
-                r: innerRadius,
-                a: base
-            },
-
-            {
-                r: outerRadius,
-                a: base + step * .18
-            },
-
-            {
-                r: outerRadius,
-                a: base + step * .42
-            },
-
-            {
-                r: innerRadius,
-                a: base + step * .58
-            }
-
-        ];
+        const shape =
+            new THREE.Shape();
 
 
-        points.forEach((point, index) => {
-
-            const x =
-                Math.cos(point.a) *
-                point.r;
-
-            const y =
-                Math.sin(point.a) *
-                point.r;
+        const step =
+            (Math.PI * 2) /
+            teeth;
 
 
-            if (i === 0 && index === 0) {
+        for (
+            let i = 0;
+            i < teeth;
+            i++
+        ) {
 
-                gearShape.moveTo(x, y);
-
-            } else {
-
-                gearShape.lineTo(x, y);
-
-            }
-
-        });
-
-    }
+            const base =
+                i * step;
 
 
-    /* ================= CENTER HOLE ================= */
+            const points = [
 
-    const hole =
-        new THREE.Path();
+                {
+                    r: innerRadius,
+                    a: base
+                },
 
-    const holeRadius = .72;
+                {
+                    r: outerRadius,
+                    a: base + step * .18
+                },
+
+                {
+                    r: outerRadius,
+                    a: base + step * .42
+                },
+
+                {
+                    r: innerRadius,
+                    a: base + step * .58
+                }
+
+            ];
 
 
-    for (let i = 0; i <= 64; i++) {
+            points.forEach(
+                (point, index) => {
 
-        const angle =
-            (i / 64) *
-            Math.PI *
-            2;
-
-        const x =
-            Math.cos(angle) *
-            holeRadius;
-
-        const y =
-            Math.sin(angle) *
-            holeRadius;
+                    const x =
+                        Math.cos(point.a) *
+                        point.r;
 
 
-        if (i === 0) {
+                    const y =
+                        Math.sin(point.a) *
+                        point.r;
 
-            hole.moveTo(x, y);
 
-        } else {
+                    if (
+                        i === 0 &&
+                        index === 0
+                    ) {
 
-            hole.lineTo(x, y);
+                        shape.moveTo(
+                            x,
+                            y
+                        );
+
+                    } else {
+
+                        shape.lineTo(
+                            x,
+                            y
+                        );
+
+                    }
+
+                }
+            );
 
         }
 
-    }
+
+        /* CENTER HOLE */
+
+        const hole =
+            new THREE.Path();
 
 
-    gearShape.holes.push(hole);
+        for (
+            let i = 0;
+            i <= 64;
+            i++
+        ) {
+
+            const angle =
+                (i / 64) *
+                Math.PI *
+                2;
 
 
-    /* ================= GEAR GEOMETRY ================= */
+            const x =
+                Math.cos(angle) *
+                holeRadius;
 
-    const gearGeometry =
-        new THREE.ExtrudeGeometry(
-            gearShape,
-            {
-                depth: .55,
 
-                bevelEnabled: true,
+            const y =
+                Math.sin(angle) *
+                holeRadius;
 
-                bevelSegments: 4,
 
-                bevelSize: .08,
+            if (i === 0) {
 
-                bevelThickness: .08
+                hole.moveTo(
+                    x,
+                    y
+                );
+
+            } else {
+
+                hole.lineTo(
+                    x,
+                    y
+                );
+
             }
+
+        }
+
+
+        shape.holes.push(
+            hole
         );
 
 
-    gearGeometry.center();
+        const geometry =
+            new THREE.ExtrudeGeometry(
+                shape,
+                {
+                    depth: .55,
+
+                    bevelEnabled: true,
+
+                    bevelSegments: 4,
+
+                    bevelSize: .08,
+
+                    bevelThickness: .08
+                }
+            );
 
 
-    const gearMaterial =
+        geometry.center();
+
+
+        return geometry;
+
+    }
+
+
+    /* ================= MAIN GEAR ================= */
+
+    const mainGearGeometry =
+        createGear(
+            18,
+            2.15,
+            1.65,
+            .72
+        );
+
+
+    const mainGearMaterial =
         new THREE.MeshStandardMaterial({
 
             color: 0xd9d9d9,
@@ -223,40 +308,45 @@ if (container && typeof THREE !== "undefined") {
         });
 
 
-    const gear =
+    const mainGear =
         new THREE.Mesh(
-            gearGeometry,
-            gearMaterial
+            mainGearGeometry,
+            mainGearMaterial
         );
 
 
-    gear.scale.set(
+    mainGear.scale.set(
         1.15,
         1.15,
         1.15
     );
 
 
-    gear.rotation.x = .35;
+    mainGear.rotation.x =
+        .35;
 
-    gear.rotation.y = .2;
+
+    mainGear.rotation.y =
+        .2;
 
 
-    scene.add(gear);
+    scene.add(
+        mainGear
+    );
 
 
     /* ================= INNER GEAR ================= */
 
-    const innerGear =
-        gear.clone();
+    const innerGearGeometry =
+        createGear(
+            12,
+            1.0,
+            .72,
+            .30
+        );
 
-    innerGear.scale.set(
-        .48,
-        .48,
-        .48
-    );
 
-    innerGear.material =
+    const innerGearMaterial =
         new THREE.MeshStandardMaterial({
 
             color: 0xff1734,
@@ -267,52 +357,65 @@ if (container && typeof THREE !== "undefined") {
         });
 
 
+    const innerGear =
+        new THREE.Mesh(
+            innerGearGeometry,
+            innerGearMaterial
+        );
+
+
+    innerGear.scale.set(
+        .55,
+        .55,
+        .55
+    );
+
+
     innerGear.position.z =
-        .35;
+        .38;
 
 
-    scene.add(innerGear);
+    scene.add(
+        innerGear
+    );
 
 
     /* ================= CENTER RING ================= */
 
-    const ringGeometry =
-        new THREE.TorusGeometry(
-            .73,
-            .055,
-            12,
-            64
-        );
-
-
-    const ringMaterial =
-        new THREE.MeshStandardMaterial({
-
-            color: 0xff1734,
-
-            metalness: .9,
-
-            roughness: .2
-        });
-
-
     const centerRing =
         new THREE.Mesh(
-            ringGeometry,
-            ringMaterial
+
+            new THREE.TorusGeometry(
+                .72,
+                .055,
+                12,
+                64
+            ),
+
+            new THREE.MeshStandardMaterial({
+
+                color: 0xff1734,
+
+                metalness: .9,
+
+                roughness: .2
+            })
+
         );
 
 
     centerRing.position.z =
-        .42;
+        .45;
 
 
-    scene.add(centerRing);
+    scene.add(
+        centerRing
+    );
 
 
-    /* ================= FLOATING RINGS ================= */
+    /* ================= OUTER RINGS ================= */
 
-    const ring1 =
+    const outerRing =
         new THREE.Mesh(
 
             new THREE.TorusGeometry(
@@ -323,21 +426,27 @@ if (container && typeof THREE !== "undefined") {
             ),
 
             new THREE.MeshBasicMaterial({
+
                 color: 0xffffff,
+
                 transparent: true,
+
                 opacity: .25
             })
 
         );
 
 
-    ring1.rotation.x =
+    outerRing.rotation.x =
         Math.PI / 2.4;
 
-    scene.add(ring1);
+
+    scene.add(
+        outerRing
+    );
 
 
-    const ring2 =
+    const redRing =
         new THREE.Mesh(
 
             new THREE.TorusGeometry(
@@ -348,26 +457,35 @@ if (container && typeof THREE !== "undefined") {
             ),
 
             new THREE.MeshBasicMaterial({
+
                 color: 0xff1734,
+
                 transparent: true,
+
                 opacity: .35
             })
 
         );
 
 
-    ring2.rotation.y =
+    redRing.rotation.y =
         Math.PI / 3;
 
-    scene.add(ring2);
+
+    scene.add(
+        redRing
+    );
 
 
     /* ================= PARTICLES ================= */
 
-    const particleCount = 350;
+    const particleCount =
+        350;
+
 
     const particleGeometry =
         new THREE.BufferGeometry();
+
 
     const positions =
         new Float32Array(
@@ -375,29 +493,44 @@ if (container && typeof THREE !== "undefined") {
         );
 
 
-    for (let i = 0; i < particleCount; i++) {
+    for (
+        let i = 0;
+        i < particleCount;
+        i++
+    ) {
 
         const radius =
-            3.2 + Math.random() * 2.5;
+            3.2 +
+            Math.random() * 2.5;
+
 
         const angle =
             Math.random() *
             Math.PI *
             2;
 
+
         const height =
             (Math.random() - .5) *
             5;
 
 
-        positions[i * 3] =
+        positions[
+            i * 3
+        ] =
             Math.cos(angle) *
             radius;
 
-        positions[i * 3 + 1] =
+
+        positions[
+            i * 3 + 1
+        ] =
             height;
 
-        positions[i * 3 + 2] =
+
+        positions[
+            i * 3 + 2
+        ] =
             Math.sin(angle) *
             radius;
 
@@ -433,7 +566,9 @@ if (container && typeof THREE !== "undefined") {
         );
 
 
-    scene.add(particles);
+    scene.add(
+        particles
+    );
 
 
     /* ================= MOUSE MOVEMENT ================= */
@@ -441,19 +576,23 @@ if (container && typeof THREE !== "undefined") {
     let mouseX = 0;
     let mouseY = 0;
 
+
     document.addEventListener(
         "mousemove",
         (event) => {
 
             mouseX =
-                (event.clientX /
-                    window.innerWidth) *
-                2 - 1;
+                (
+                    event.clientX /
+                    window.innerWidth
+                ) * 2 - 1;
+
 
             mouseY =
-                (event.clientY /
-                    window.innerHeight) *
-                2 - 1;
+                (
+                    event.clientY /
+                    window.innerHeight
+                ) * 2 - 1;
 
         }
     );
@@ -468,32 +607,45 @@ if (container && typeof THREE !== "undefined") {
         );
 
 
-        gear.rotation.z += .004;
-
-        innerGear.rotation.z -= .009;
-
-        centerRing.rotation.z -= .015;
-
-        ring1.rotation.z += .002;
-
-        ring1.rotation.x += .0005;
-
-        ring2.rotation.z -= .003;
-
-        particles.rotation.y += .0005;
+        mainGear.rotation.z +=
+            .004;
 
 
-        gear.rotation.x +=
+        innerGear.rotation.z -=
+            .009;
+
+
+        centerRing.rotation.z -=
+            .015;
+
+
+        outerRing.rotation.z +=
+            .002;
+
+
+        outerRing.rotation.x +=
+            .0005;
+
+
+        redRing.rotation.z -=
+            .003;
+
+
+        particles.rotation.y +=
+            .0005;
+
+
+        mainGear.rotation.x +=
             (
                 mouseY * .25 -
-                gear.rotation.x
+                mainGear.rotation.x
             ) * .015;
 
 
-        gear.rotation.y +=
+        mainGear.rotation.y +=
             (
                 mouseX * .25 -
-                gear.rotation.y
+                mainGear.rotation.y
             ) * .015;
 
 
@@ -517,17 +669,22 @@ if (container && typeof THREE !== "undefined") {
             const width =
                 container.clientWidth;
 
+
             const height =
                 container.clientHeight;
 
 
-            if (!width || !height) {
+            if (
+                !width ||
+                !height
+            ) {
                 return;
             }
 
 
             camera.aspect =
                 width / height;
+
 
             camera.updateProjectionMatrix();
 
@@ -600,13 +757,14 @@ clickableElements.forEach(
 
 
 /* =====================================================
-   NAVBAR ACTIVE EFFECT
+   ACTIVE NAVIGATION
    ===================================================== */
 
 const sections =
     document.querySelectorAll(
         "section[id]"
     );
+
 
 const navLinks =
     document.querySelectorAll(
@@ -620,11 +778,13 @@ window.addEventListener(
 
         let current = "";
 
+
         sections.forEach(
             (section) => {
 
                 const sectionTop =
                     section.offsetTop - 180;
+
 
                 if (
                     window.scrollY >=
@@ -645,12 +805,15 @@ window.addEventListener(
         navLinks.forEach(
             (link) => {
 
-                link.style.color = "";
+                link.style.color =
+                    "";
+
 
                 if (
                     link.getAttribute(
                         "href"
-                    ) === "#" + current
+                    ) ===
+                    "#" + current
                 ) {
 
                     link.style.color =
@@ -666,7 +829,7 @@ window.addEventListener(
 
 
 /* =====================================================
-   HERO TEXT ENTRY ANIMATION
+   HERO LOAD
    ===================================================== */
 
 window.addEventListener(
@@ -674,7 +837,9 @@ window.addEventListener(
     () => {
 
         document
-            .querySelector(".hero-content")
+            .querySelector(
+                ".hero-content"
+            )
             ?.classList.add(
                 "loaded"
             );
