@@ -1,68 +1,41 @@
 /* =====================================================
-   MECHFORGE
-   3D MECHANICAL ENGINEERING PORTFOLIO
-   Built by Hazrat Belal
+   HAZRAT BELAL - 3D ENGINEERING PORTFOLIO
    ===================================================== */
 
 
-/* =====================================================
-   THREE.JS 3D ENGINE
-   ===================================================== */
+/* ================= THREE.JS ================= */
 
-const container =
-    document.getElementById("three-model");
+const container = document.getElementById("three-model");
 
+if (container && typeof THREE !== "undefined") {
 
-if (
-    container &&
-    typeof THREE !== "undefined"
-) {
+    const scene = new THREE.Scene();
 
-    const scene =
-        new THREE.Scene();
-
-
-    const camera =
-        new THREE.PerspectiveCamera(
-            45,
-            container.clientWidth /
-            container.clientHeight,
-            0.1,
-            1000
-        );
-
-
-    camera.position.set(
-        0,
-        0,
-        7
+    const camera = new THREE.PerspectiveCamera(
+        45,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
     );
 
+    camera.position.set(0, 0, 7);
 
-    const renderer =
-        new THREE.WebGLRenderer({
-            antialias: true,
-            alpha: true
-        });
 
+    const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true
+    });
 
     renderer.setSize(
         container.clientWidth,
         container.clientHeight
     );
 
-
     renderer.setPixelRatio(
-        Math.min(
-            window.devicePixelRatio,
-            2
-        )
+        Math.min(window.devicePixelRatio, 2)
     );
 
-
-    container.appendChild(
-        renderer.domElement
-    );
+    container.appendChild(renderer.domElement);
 
 
     /* ================= LIGHTS ================= */
@@ -73,10 +46,7 @@ if (
             1.4
         );
 
-
-    scene.add(
-        ambientLight
-    );
+    scene.add(ambientLight);
 
 
     const whiteLight =
@@ -85,17 +55,13 @@ if (
             3
         );
 
-
     whiteLight.position.set(
         5,
         5,
         8
     );
 
-
-    scene.add(
-        whiteLight
-    );
+    scene.add(whiteLight);
 
 
     const redLight =
@@ -105,199 +71,148 @@ if (
             15
         );
 
-
     redLight.position.set(
         -4,
         2,
         4
     );
 
-
-    scene.add(
-        redLight
-    );
+    scene.add(redLight);
 
 
-    /* ================= GEAR SHAPE ================= */
+    /* ================= GEAR ================= */
 
-    function createGear(
-        teeth,
-        outerRadius,
-        innerRadius,
-        holeRadius
-    ) {
+    const gearShape =
+        new THREE.Shape();
 
-        const shape =
-            new THREE.Shape();
+    const teeth = 18;
 
+    const outerRadius = 2.15;
+    const innerRadius = 1.65;
 
-        const step =
-            (Math.PI * 2) /
-            teeth;
+    const step =
+        (Math.PI * 2) / teeth;
 
 
-        for (
-            let i = 0;
-            i < teeth;
-            i++
-        ) {
+    for (let i = 0; i < teeth; i++) {
 
-            const base =
-                i * step;
+        const base =
+            i * step;
 
+        const points = [
 
-            const points = [
+            {
+                r: innerRadius,
+                a: base
+            },
 
-                {
-                    r: innerRadius,
-                    a: base
-                },
+            {
+                r: outerRadius,
+                a: base + step * .18
+            },
 
-                {
-                    r: outerRadius,
-                    a: base + step * .18
-                },
+            {
+                r: outerRadius,
+                a: base + step * .42
+            },
 
-                {
-                    r: outerRadius,
-                    a: base + step * .42
-                },
+            {
+                r: innerRadius,
+                a: base + step * .58
+            }
 
-                {
-                    r: innerRadius,
-                    a: base + step * .58
-                }
-
-            ];
+        ];
 
 
-            points.forEach(
-                (point, index) => {
-
-                    const x =
-                        Math.cos(point.a) *
-                        point.r;
-
-
-                    const y =
-                        Math.sin(point.a) *
-                        point.r;
-
-
-                    if (
-                        i === 0 &&
-                        index === 0
-                    ) {
-
-                        shape.moveTo(
-                            x,
-                            y
-                        );
-
-                    } else {
-
-                        shape.lineTo(
-                            x,
-                            y
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* CENTER HOLE */
-
-        const hole =
-            new THREE.Path();
-
-
-        for (
-            let i = 0;
-            i <= 64;
-            i++
-        ) {
-
-            const angle =
-                (i / 64) *
-                Math.PI *
-                2;
-
+        points.forEach((point, index) => {
 
             const x =
-                Math.cos(angle) *
-                holeRadius;
-
+                Math.cos(point.a) *
+                point.r;
 
             const y =
-                Math.sin(angle) *
-                holeRadius;
+                Math.sin(point.a) *
+                point.r;
 
 
-            if (i === 0) {
+            if (i === 0 && index === 0) {
 
-                hole.moveTo(
-                    x,
-                    y
-                );
+                gearShape.moveTo(x, y);
 
             } else {
 
-                hole.lineTo(
-                    x,
-                    y
-                );
+                gearShape.lineTo(x, y);
 
             }
 
-        }
-
-
-        shape.holes.push(
-            hole
-        );
-
-
-        const geometry =
-            new THREE.ExtrudeGeometry(
-                shape,
-                {
-                    depth: .55,
-
-                    bevelEnabled: true,
-
-                    bevelSegments: 4,
-
-                    bevelSize: .08,
-
-                    bevelThickness: .08
-                }
-            );
-
-
-        geometry.center();
-
-
-        return geometry;
+        });
 
     }
 
 
-    /* ================= MAIN GEAR ================= */
+    /* ================= CENTER HOLE ================= */
 
-    const mainGearGeometry =
-        createGear(
-            18,
-            2.15,
-            1.65,
-            .72
+    const hole =
+        new THREE.Path();
+
+    const holeRadius = .72;
+
+
+    for (let i = 0; i <= 64; i++) {
+
+        const angle =
+            (i / 64) *
+            Math.PI *
+            2;
+
+        const x =
+            Math.cos(angle) *
+            holeRadius;
+
+        const y =
+            Math.sin(angle) *
+            holeRadius;
+
+
+        if (i === 0) {
+
+            hole.moveTo(x, y);
+
+        } else {
+
+            hole.lineTo(x, y);
+
+        }
+
+    }
+
+
+    gearShape.holes.push(hole);
+
+
+    /* ================= GEAR GEOMETRY ================= */
+
+    const gearGeometry =
+        new THREE.ExtrudeGeometry(
+            gearShape,
+            {
+                depth: .55,
+
+                bevelEnabled: true,
+
+                bevelSegments: 4,
+
+                bevelSize: .08,
+
+                bevelThickness: .08
+            }
         );
 
 
-    const mainGearMaterial =
+    gearGeometry.center();
+
+
+    const gearMaterial =
         new THREE.MeshStandardMaterial({
 
             color: 0xd9d9d9,
@@ -308,45 +223,40 @@ if (
         });
 
 
-    const mainGear =
+    const gear =
         new THREE.Mesh(
-            mainGearGeometry,
-            mainGearMaterial
+            gearGeometry,
+            gearMaterial
         );
 
 
-    mainGear.scale.set(
+    gear.scale.set(
         1.15,
         1.15,
         1.15
     );
 
 
-    mainGear.rotation.x =
-        .35;
+    gear.rotation.x = .35;
+
+    gear.rotation.y = .2;
 
 
-    mainGear.rotation.y =
-        .2;
-
-
-    scene.add(
-        mainGear
-    );
+    scene.add(gear);
 
 
     /* ================= INNER GEAR ================= */
 
-    const innerGearGeometry =
-        createGear(
-            12,
-            1.0,
-            .72,
-            .30
-        );
+    const innerGear =
+        gear.clone();
 
+    innerGear.scale.set(
+        .48,
+        .48,
+        .48
+    );
 
-    const innerGearMaterial =
+    innerGear.material =
         new THREE.MeshStandardMaterial({
 
             color: 0xff1734,
@@ -357,65 +267,52 @@ if (
         });
 
 
-    const innerGear =
-        new THREE.Mesh(
-            innerGearGeometry,
-            innerGearMaterial
-        );
-
-
-    innerGear.scale.set(
-        .55,
-        .55,
-        .55
-    );
-
-
     innerGear.position.z =
-        .38;
+        .35;
 
 
-    scene.add(
-        innerGear
-    );
+    scene.add(innerGear);
 
 
     /* ================= CENTER RING ================= */
 
+    const ringGeometry =
+        new THREE.TorusGeometry(
+            .73,
+            .055,
+            12,
+            64
+        );
+
+
+    const ringMaterial =
+        new THREE.MeshStandardMaterial({
+
+            color: 0xff1734,
+
+            metalness: .9,
+
+            roughness: .2
+        });
+
+
     const centerRing =
         new THREE.Mesh(
-
-            new THREE.TorusGeometry(
-                .72,
-                .055,
-                12,
-                64
-            ),
-
-            new THREE.MeshStandardMaterial({
-
-                color: 0xff1734,
-
-                metalness: .9,
-
-                roughness: .2
-            })
-
+            ringGeometry,
+            ringMaterial
         );
 
 
     centerRing.position.z =
-        .45;
+        .42;
 
 
-    scene.add(
-        centerRing
-    );
+    scene.add(centerRing);
 
 
-    /* ================= OUTER RINGS ================= */
+    /* ================= FLOATING RINGS ================= */
 
-    const outerRing =
+    const ring1 =
         new THREE.Mesh(
 
             new THREE.TorusGeometry(
@@ -426,27 +323,21 @@ if (
             ),
 
             new THREE.MeshBasicMaterial({
-
                 color: 0xffffff,
-
                 transparent: true,
-
                 opacity: .25
             })
 
         );
 
 
-    outerRing.rotation.x =
+    ring1.rotation.x =
         Math.PI / 2.4;
 
-
-    scene.add(
-        outerRing
-    );
+    scene.add(ring1);
 
 
-    const redRing =
+    const ring2 =
         new THREE.Mesh(
 
             new THREE.TorusGeometry(
@@ -457,35 +348,26 @@ if (
             ),
 
             new THREE.MeshBasicMaterial({
-
                 color: 0xff1734,
-
                 transparent: true,
-
                 opacity: .35
             })
 
         );
 
 
-    redRing.rotation.y =
+    ring2.rotation.y =
         Math.PI / 3;
 
-
-    scene.add(
-        redRing
-    );
+    scene.add(ring2);
 
 
     /* ================= PARTICLES ================= */
 
-    const particleCount =
-        350;
-
+    const particleCount = 350;
 
     const particleGeometry =
         new THREE.BufferGeometry();
-
 
     const positions =
         new Float32Array(
@@ -493,44 +375,29 @@ if (
         );
 
 
-    for (
-        let i = 0;
-        i < particleCount;
-        i++
-    ) {
+    for (let i = 0; i < particleCount; i++) {
 
         const radius =
-            3.2 +
-            Math.random() * 2.5;
-
+            3.2 + Math.random() * 2.5;
 
         const angle =
             Math.random() *
             Math.PI *
             2;
 
-
         const height =
             (Math.random() - .5) *
             5;
 
 
-        positions[
-            i * 3
-        ] =
+        positions[i * 3] =
             Math.cos(angle) *
             radius;
 
-
-        positions[
-            i * 3 + 1
-        ] =
+        positions[i * 3 + 1] =
             height;
 
-
-        positions[
-            i * 3 + 2
-        ] =
+        positions[i * 3 + 2] =
             Math.sin(angle) *
             radius;
 
@@ -566,9 +433,7 @@ if (
         );
 
 
-    scene.add(
-        particles
-    );
+    scene.add(particles);
 
 
     /* ================= MOUSE MOVEMENT ================= */
@@ -576,23 +441,19 @@ if (
     let mouseX = 0;
     let mouseY = 0;
 
-
     document.addEventListener(
         "mousemove",
         (event) => {
 
             mouseX =
-                (
-                    event.clientX /
-                    window.innerWidth
-                ) * 2 - 1;
-
+                (event.clientX /
+                    window.innerWidth) *
+                2 - 1;
 
             mouseY =
-                (
-                    event.clientY /
-                    window.innerHeight
-                ) * 2 - 1;
+                (event.clientY /
+                    window.innerHeight) *
+                2 - 1;
 
         }
     );
@@ -607,45 +468,32 @@ if (
         );
 
 
-        mainGear.rotation.z +=
-            .004;
+        gear.rotation.z += .004;
+
+        innerGear.rotation.z -= .009;
+
+        centerRing.rotation.z -= .015;
+
+        ring1.rotation.z += .002;
+
+        ring1.rotation.x += .0005;
+
+        ring2.rotation.z -= .003;
+
+        particles.rotation.y += .0005;
 
 
-        innerGear.rotation.z -=
-            .009;
-
-
-        centerRing.rotation.z -=
-            .015;
-
-
-        outerRing.rotation.z +=
-            .002;
-
-
-        outerRing.rotation.x +=
-            .0005;
-
-
-        redRing.rotation.z -=
-            .003;
-
-
-        particles.rotation.y +=
-            .0005;
-
-
-        mainGear.rotation.x +=
+        gear.rotation.x +=
             (
                 mouseY * .25 -
-                mainGear.rotation.x
+                gear.rotation.x
             ) * .015;
 
 
-        mainGear.rotation.y +=
+        gear.rotation.y +=
             (
                 mouseX * .25 -
-                mainGear.rotation.y
+                gear.rotation.y
             ) * .015;
 
 
@@ -669,22 +517,17 @@ if (
             const width =
                 container.clientWidth;
 
-
             const height =
                 container.clientHeight;
 
 
-            if (
-                !width ||
-                !height
-            ) {
+            if (!width || !height) {
                 return;
             }
 
 
             camera.aspect =
                 width / height;
-
 
             camera.updateProjectionMatrix();
 
@@ -757,14 +600,13 @@ clickableElements.forEach(
 
 
 /* =====================================================
-   ACTIVE NAVIGATION
+   NAVBAR ACTIVE EFFECT
    ===================================================== */
 
 const sections =
     document.querySelectorAll(
         "section[id]"
     );
-
 
 const navLinks =
     document.querySelectorAll(
@@ -778,13 +620,11 @@ window.addEventListener(
 
         let current = "";
 
-
         sections.forEach(
             (section) => {
 
                 const sectionTop =
                     section.offsetTop - 180;
-
 
                 if (
                     window.scrollY >=
@@ -805,15 +645,12 @@ window.addEventListener(
         navLinks.forEach(
             (link) => {
 
-                link.style.color =
-                    "";
-
+                link.style.color = "";
 
                 if (
                     link.getAttribute(
                         "href"
-                    ) ===
-                    "#" + current
+                    ) === "#" + current
                 ) {
 
                     link.style.color =
@@ -829,7 +666,7 @@ window.addEventListener(
 
 
 /* =====================================================
-   HERO LOAD
+   HERO TEXT ENTRY ANIMATION
    ===================================================== */
 
 window.addEventListener(
@@ -837,9 +674,7 @@ window.addEventListener(
     () => {
 
         document
-            .querySelector(
-                ".hero-content"
-            )
+            .querySelector(".hero-content")
             ?.classList.add(
                 "loaded"
             );
