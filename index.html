@@ -1,145 +1,379 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080808">
-  <title>HAZRAT BELAL | Mechanical Engineer</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080808" />
+  <meta name="description" content="Hazrat Belal — Mechanical Engineering student, 3D CAD, AutoCAD, Arduino and aspiring Oil & Gas Project Manager." />
+  <title>HAZRAT BELAL | Mechanical Engineering Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="header">
-    <a class="logo" href="#home">HB <span>HAZRAT BELAL</span></a>
-    <button id="menuBtn" aria-label="Toggle navigation">☰</button>
-    <nav id="nav">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+  <div class="scanlines" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Hazrat Belal home"><span class="brand-mark">HB</span><span>HAZRAT <b>BELAL</b></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav id="navMenu" aria-label="Main navigation">
+      <a href="#home">HOME</a><a href="#about">ABOUT</a><a href="#skills">SKILLS</a><a href="#projects">PROJECTS</a><a href="#contact">CONTACT</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero" id="home">
-      <div>
-        <p class="tag">B.TECH MECHANICAL ENGINEERING STUDENT</p>
-        <h1>HAZRAT<br><span>BELAL.</span></h1>
-        <h2>Engineering Ideas Into Reality.</h2>
-        <p class="description">
-          Mechanical engineering student passionate about 3D CAD,
-          mechanical design, Arduino and practical engineering projects.
-        </p>
-        <a class="btn" href="#projects">EXPLORE PROJECTS ↗</a>
-        <a class="btn secondary" href="#contact">CONTACT ME</a>
+    <section class="hero section" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> MECHANICAL ENGINEERING • PORTFOLIO</p>
+        <h1>HAZRAT<br /><span>BELAL</span></h1>
+        <h2>Building ideas into <span class="red-text">real-world engineering.</span></h2>
+        <p class="hero-description">B.Tech Mechanical Engineering student exploring 3D CAD, practical design, embedded systems and engineering problem-solving.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">EXPLORE PROJECTS <span>↗</span></a>
+          <a class="button button-outline" href="#contact">CONTACT ME</a>
+        </div>
+        <div class="hero-meta"><span>01 / ENGINEERING</span><span>DESIGN · BUILD · IMPROVE</span></div>
       </div>
-
-      <div class="mechanical-art">
-        <div class="orbit"></div>
-        <div class="gear">⚙</div>
-        <div class="art-label">MECHANICAL DESIGN<br>PRECISION • INNOVATION</div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <p class="tag">01 / ABOUT ME</p>
-      <h2>Building My <span>Engineering Future.</span></h2>
-      <p class="section-text">
-        I am a B.Tech Mechanical Engineering student developing my
-        knowledge of mechanical systems, CAD design, programming and
-        hands-on prototyping. My goal is to keep learning and contribute
-        to meaningful engineering projects.
-      </p>
-
-      <div class="goal">
-        <p class="tag">LONG-TERM CAREER GOAL</p>
-        <h3>Aspiring Oil &amp; Gas Project Manager</h3>
-        <p>Focused on developing the technical knowledge and project skills needed for the future.</p>
+      <div class="hero-visual" aria-label="Mechanical engineering illustration">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="crosshair crosshair-a"></div><div class="crosshair crosshair-b"></div>
+        <div class="gear gear-large">⚙</div><div class="gear gear-small">⚙</div>
+        <div class="blueprint-card">
+          <div class="blueprint-top"><span>HB / ENGINEERING</span><span>FIG. 001</span></div>
+          <svg viewBox="0 0 320 190" role="img" aria-label="Technical drawing of a mechanical component">
+            <g fill="none" stroke="currentColor" stroke-width="1.3">
+              <circle cx="160" cy="93" r="62"/><circle cx="160" cy="93" r="42"/><circle cx="160" cy="93" r="16"/>
+              <path d="M160 18V168M85 93H235M116 49L204 137M204 49L116 137" stroke-dasharray="5 5"/>
+              <path d="M90 28H230M90 23V33M230 23V33M247 31V155M242 31H252M242 155H252"/>
+              <path d="M90 28L98 24M90 28L98 32M230 28L222 24M230 28L222 32"/>
+            </g>
+            <g fill="currentColor" font-size="8" font-family="monospace"><text x="148" y="17">Ø 120</text><text x="254" y="96">60</text><text x="12" y="180">TECHNICAL CONCEPT / NOT TO SCALE</text></g>
+          </svg>
+          <div class="blueprint-bottom"><span>DESIGN / 3D CAD</span><span class="live-label">● LIVE IDEAS</span></div>
+        </div>
+        <div class="floating-label label-top">PRECISION <b>01</b></div>
+        <div class="floating-label label-bottom">MECHANICAL <b>ENGINEERING</b></div>
       </div>
     </section>
 
-    <section class="section dark" id="skills">
-      <p class="tag">02 / MY TOOLKIT</p>
-      <h2>Technical <span>Skills.</span></h2>
-      <div class="grid">
-        <article class="card"><h3>⚙ Mechanical Engineering</h3><p>Engineering fundamentals and mechanical systems.</p></article>
-        <article class="card"><h3>◇ 3D CAD &amp; AutoCAD</h3><p>Technical drawing, modelling and design learning.</p></article>
-        <article class="card"><h3>⌁ Arduino</h3><p>Sensor-based systems and prototyping.</p></article>
-        <article class="card"><h3>{ } C Programming</h3><p>Programming fundamentals and logical problem-solving.</p></article>
-        <article class="card"><h3>∑ Scilab</h3><p>Computational tools for engineering calculations.</p></article>
+    <section class="ticker" aria-label="Focus areas"><div>MECHANICAL DESIGN <span>✳</span> 3D CAD <span>✳</span> AUTOMATION <span>✳</span> PROBLEM SOLVING <span>✳</span> OIL & GAS <span>✳</span> MECHANICAL DESIGN <span>✳</span> 3D CAD <span>✳</span></div></section>
+
+    <section class="section about-section" id="about">
+      <div class="section-heading"><p class="eyebrow">01 / ABOUT</p><h2>Curious mind.<br /><span class="red-text">Engineering mindset.</span></h2></div>
+      <div class="about-content"><p>I’m a B.Tech Mechanical Engineering student focused on building strong fundamentals and turning concepts into practical projects. I’m interested in mechanical design, CAD tools, Arduino-based systems and the engineering behind large industrial projects.</p>
+        <div class="goal-card"><span class="goal-icon">↗</span><div><small>LONG-TERM CAREER GOAL</small><h3>Aspiring Oil &amp; Gas<br />Project Manager</h3><p>Learning step by step toward complex, real-world engineering projects.</p></div></div>
       </div>
     </section>
 
-    <section class="section" id="projects">
-      <p class="tag">03 / MY WORK</p>
-      <h2>Featured <span>Project.</span></h2>
+    <section class="section skills-section" id="skills">
+      <div class="section-heading"><p class="eyebrow">02 / CAPABILITIES</p><h2>Skills in <span class="red-text">progress.</span></h2><p class="section-intro">A growing toolkit for mechanical design, prototyping and technical problem-solving.</p></div>
+      <div class="skills-grid">
+        <article class="skill-card"><span class="skill-number">01</span><span class="skill-icon">⌘</span><h3>Mechanical Engineering</h3><p>Engineering fundamentals, components and design thinking.</p><div class="skill-line"><i style="width:72%"></i></div></article>
+        <article class="skill-card"><span class="skill-number">02</span><span class="skill-icon">◇</span><h3>3D CAD &amp; AutoCAD</h3><p>Learning technical drawings, modelling and design workflows.</p><div class="skill-line"><i style="width:58%"></i></div></article>
+        <article class="skill-card"><span class="skill-number">03</span><span class="skill-icon">⌁</span><h3>Arduino &amp; Prototyping</h3><p>Exploring sensors, electronics and practical system concepts.</p><div class="skill-line"><i style="width:52%"></i></div></article>
+        <article class="skill-card"><span class="skill-number">04</span><span class="skill-icon">{ }</span><h3>C Programming</h3><p>Building programming basics for logic and engineering applications.</p><div class="skill-line"><i style="width:45%"></i></div></article>
+        <article class="skill-card"><span class="skill-number">05</span><span class="skill-icon">∑</span><h3>Scilab</h3><p>Developing computational skills for engineering calculations.</p><div class="skill-line"><i style="width:40%"></i></div></article>
+      </div>
+      <p class="skills-note">Progress indicators are personal learning estimates, not certifications.</p>
+    </section>
 
-      <article class="project">
-        <img src="cooling-system.png"
-             alt="Smart Battery Cooling System project"
-             onerror="this.style.display='none'">
-        <div>
-          <p class="tag">PROJECT 001</p>
-          <h3>Smart Battery Cooling System</h3>
-          <p>
-            A student project exploring battery temperature monitoring
-            and cooling concepts using sensors and a microcontroller.
-          </p>
-          <div class="chips">
-            <span>Arduino</span>
-            <span>Temperature Monitoring</span>
-            <span>Cooling Concept</span>
-          </div>
-          <a href="#contact" class="text-link">ASK ABOUT THIS PROJECT ↗</a>
+    <section class="section projects-section" id="projects">
+      <div class="section-heading"><p class="eyebrow">03 / SELECTED WORK</p><h2>Ideas becoming <span class="red-text">projects.</span></h2><p class="section-intro">A showcase of concepts, prototypes and ongoing learning.</p></div>
+      <article class="project-card">
+        <div class="project-image">
+          <img src="cooling-system.png" alt="Smart Battery Cooling System project" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
+          <div class="image-fallback"><span>HB / PROJECT 001</span><div class="fallback-art">⚙<small>THERMAL MANAGEMENT</small></div><span>IMAGE PLACEHOLDER — ADD cooling-system.png</span></div>
+          <span class="project-tag">FEATURED PROJECT</span>
+        </div>
+        <div class="project-details"><p class="eyebrow">PROJECT 001 / PROTOTYPING</p><h3>Smart Battery Cooling System</h3><p>A student project concept focused on battery temperature monitoring and cooling. The system explores how sensors and a microcontroller can help monitor thermal conditions and support safer operation.</p>
+          <div class="project-chips"><span>Arduino</span><span>Temperature Monitoring</span><span>Cooling Concept</span></div>
+          <a class="text-link" href="#contact">ASK ABOUT THIS PROJECT <span>↗</span></a>
         </div>
       </article>
-      <p class="muted">More engineering projects will be added as they are completed.</p>
+      <div class="project-note"><span>+</span><p><b>More projects coming soon.</b><br />This portfolio will grow as new designs and prototypes are completed.</p></div>
     </section>
 
-    <section class="section dark contact" id="contact">
-      <p class="tag">04 / GET IN TOUCH</p>
-      <h2>Let's <span>Connect.</span></h2>
-      <p class="section-text">
-        Have a project idea, question or collaboration proposal?
-        Send me a message.
-      </p>
-
-      <div class="contact-grid">
-        <div class="card contact-info">
-          <h3>Contact Details</h3>
-          <p>Email: <a href="mailto:hazratbelal967@gmail.com">hazratbelal967@gmail.com</a></p>
-          <p>LinkedIn: <a href="https://www.linkedin.com/in/bellaaahaz/" target="_blank" rel="noopener noreferrer">My LinkedIn ↗</a></p>
-          <p>GitHub: <a href="https://github.com/hazratbelal967-lgtm" target="_blank" rel="noopener noreferrer">My GitHub ↗</a></p>
-          <a class="btn whatsapp" href="https://wa.me/916200907602?text=Hi%20Hazrat%2C%20I%20found%20you%20on%20HAZRAT%20BELAL." target="_blank" rel="noopener noreferrer">MESSAGE ON WHATSAPP ↗</a>
-        </div>
-
-        <form id="contactForm" class="card">
-          <label for="name">Your Name</label>
-          <input id="name" name="name" type="text" placeholder="Enter your name" required>
-
-          <label for="email">Your Email</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" required>
-
-          <label for="message">Your Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
-
-          <button class="btn submit" type="submit">PREPARE EMAIL ↗</button>
-          <small>This opens your email app with your message prepared.</small>
+    <section class="contact-section section" id="contact">
+      <div class="contact-heading"><p class="eyebrow">04 / CONTACT</p><h2>Let’s connect<br /><span class="red-text">and build something.</span></h2><p>Have a project idea, collaboration proposal or engineering question? Send a message or connect through the links below.</p>
+        <div class="contact-links"><a href="mailto:hazratbelal967@gmail.com">✉ EMAIL <span>↗</span></a><a href="https://www.linkedin.com/in/bellaaahaz/" target="_blank" rel="noopener noreferrer">in LINKEDIN <span>↗</span></a><a href="https://github.com/hazratbelal967-lgtm" target="_blank" rel="noopener noreferrer">⌘ GITHUB <span>↗</span></a></div>
+      </div>
+      <div class="message-card"><div class="message-card-header"><span class="status-dot"></span> SEND A MESSAGE <span class="header-code">HB / 004</span></div>
+        <form id="contactForm">
+          <label for="visitorName">YOUR NAME</label><input id="visitorName" name="visitorName" type="text" placeholder="Enter your name" required />
+          <label for="visitorEmail">YOUR EMAIL</label><input id="visitorEmail" name="visitorEmail" type="email" placeholder="you@example.com" required />
+          <label for="visitorMessage">MESSAGE</label><textarea id="visitorMessage" name="visitorMessage" rows="4" placeholder="Tell me what you have in mind..." required></textarea>
+          <button class="button button-primary submit-button" type="submit">OPEN EMAIL DRAFT <span>↗</span></button>
+          <p class="form-note">This form opens your email app; it does not store or send messages by itself.</p>
         </form>
+        <a class="whatsapp-link" href="https://wa.me/916200907602?text=Hi%20Hazrat%2C%20I%20found%20you%20on%20HAZRAT%20BELAL." target="_blank" rel="noopener noreferrer"><span>◉</span> MESSAGE ON WHATSAPP <b>↗</b></a>
       </div>
     </section>
   </main>
 
-  <footer>
-    <a class="logo" href="#home">HB <span>HAZRAT BELAL</span></a>
-    <p>DESIGN • BUILD • KEEP LEARNING</p>
-    <small>© <span id="year"></span> HAZRAT BELAL</small>
-  </footer>
+  <footer><a class="brand footer-brand" href="#home"><span class="brand-mark">HB</span><span>HAZRAT <b>BELAL</b></span></a><p>DESIGN • BUILD • KEEP LEARNING</p><a href="#home" class="back-top">BACK TO TOP ↑</a><small>© <span id="year"></span> HAZRAT BELAL. BUILT WITH PURPOSE.</small></footer>
 
-  <!-- OPTIONAL LIVE CHAT:
-       Paste the official tawk.to widget code here when you have it.
-       Do not use a guessed widget ID. -->
+  <!-- ADDED: FLOATING LET'S LIVE CHAT -->
+  <style>
+    .live-chat-widget {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 99999;
+      font-family: inherit;
+    }
+
+    .live-chat-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 19px;
+      color: #fff;
+      background: #e50914;
+      border: 1px solid #ff3942;
+      border-radius: 7px;
+      box-shadow: 0 8px 28px rgba(229, 9, 20, .35);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .live-chat-toggle:hover {
+      background: #b90710;
+      transform: translateY(-2px);
+    }
+
+    .chat-status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      flex: 0 0 8px;
+      border-radius: 50%;
+      background: #39e879;
+      box-shadow: 0 0 10px rgba(57, 232, 121, .65);
+    }
+
+    .chat-arrow {
+      font-size: 16px;
+    }
+
+    .live-chat-panel {
+      position: absolute;
+      right: 0;
+      bottom: 65px;
+      display: none;
+      width: min(350px, calc(100vw - 32px));
+      overflow: hidden;
+      color: #f5f5f5;
+      background: #101010;
+      border: 1px solid #343434;
+      border-radius: 10px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, .65);
+    }
+
+    .live-chat-panel.open {
+      display: block;
+      animation: liveChatAppear .2s ease-out;
+    }
+
+    @keyframes liveChatAppear {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .live-chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 18px;
+      background: #171717;
+      border-bottom: 1px solid #303030;
+    }
+
+    .live-chat-header strong {
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .live-chat-header p {
+      margin: 7px 0 0;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    #liveChatClose {
+      color: #ddd;
+      background: transparent;
+      border: 0;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    .live-chat-welcome {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px;
+      border-bottom: 1px solid #292929;
+    }
+
+    .chat-avatar {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      place-items: center;
+      color: #fff;
+      background: #d90914;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .live-chat-welcome strong {
+      font-size: 13px;
+    }
+
+    .live-chat-welcome p {
+      margin: 5px 0 0;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    #liveChatForm {
+      display: grid;
+      gap: 9px;
+      padding: 18px;
+    }
+
+    #liveChatForm label {
+      margin-top: 3px;
+      color: #ccc;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    #liveChatForm input,
+    #liveChatForm textarea {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px;
+      color: #fff;
+      background: #080808;
+      border: 1px solid #383838;
+      border-radius: 5px;
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    #liveChatForm input:focus,
+    #liveChatForm textarea:focus {
+      border-color: #e50914;
+    }
+
+    #liveChatForm textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .chat-whatsapp-button,
+    .chat-email-button {
+      width: 100%;
+      padding: 12px 10px;
+      border-radius: 5px;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      cursor: pointer;
+    }
+
+    .chat-whatsapp-button {
+      margin-top: 5px;
+      color: #fff;
+      background: #168b4b;
+      border: 1px solid #20a85d;
+    }
+
+    .chat-whatsapp-button:hover {
+      background: #11743e;
+    }
+
+    .chat-email-button {
+      color: #fff;
+      background: #1c1c1c;
+      border: 1px solid #454545;
+    }
+
+    .chat-email-button:hover {
+      background: #292929;
+    }
+
+    .chat-small-note {
+      margin: 2px 0 0;
+      color: #888;
+      font-size: 10px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .live-chat-widget {
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .live-chat-toggle {
+        padding: 13px 14px;
+        font-size: 10px;
+      }
+
+      .live-chat-panel {
+        bottom: 58px;
+        width: min(340px, calc(100vw - 24px));
+      }
+    }
+  </style>
+
+  <div class="live-chat-widget" id="liveChatWidget">
+    <button class="live-chat-toggle" id="liveChatToggle" type="button" aria-expanded="false" aria-controls="liveChatPanel">
+      <span class="chat-status-dot"></span>
+      <span>LET'S LIVE CHAT</span>
+      <span class="chat-arrow">↗</span>
+    </button>
+
+    <div class="live-chat-panel" id="liveChatPanel">
+      <div class="live-chat-header">
+        <div>
+          <strong><span class="chat-status-dot"></span> LET'S TALK</strong>
+          <p>Message Hazrat Belal</p>
+        </div>
+        <button id="liveChatClose" type="button" aria-label="Close chat">×</button>
+      </div>
+
+      <div class="live-chat-welcome">
+        <span class="chat-avatar">HB</span>
+        <div>
+          <strong>Welcome!</strong>
+          <p>How can I help you today?</p>
+        </div>
+      </div>
+
+      <form id="liveChatForm">
+        <label for="chatVisitorName">YOUR NAME</label>
+        <input type="text" id="chatVisitorName" placeholder="Enter your name" autocomplete="name" required />
+
+        <label for="chatVisitorMessage">YOUR MESSAGE</label>
+        <textarea id="chatVisitorMessage" rows="4" placeholder="Type your message here..." required></textarea>
+
+        <button class="chat-whatsapp-button" type="button" id="chatWhatsApp">WHATSAPP MESSAGE ↗</button>
+        <button class="chat-email-button" type="button" id="chatEmail">SEND BY EMAIL ↗</button>
+        <p class="chat-small-note">Choose WhatsApp or email to continue your conversation.</p>
+      </form>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
